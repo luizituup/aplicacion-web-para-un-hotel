@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <context-param>
+        <param-name>jdbcDriver</param-name>
+        <param-value> com.mysql.jdbc.Driver</param-value>
+    </context-param>
+    <context-param>
+        <param-name> databaseURL</param-name>
+        <param-value>jdbc:mysql://localhost:3306/</param-value>
+    </context-param>
+    <context-param>
+        <param-name> databaseUser</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>databasePassword</param-name>
+        <param-value> </param-value>
+    </context-param>
+    <context-param>
+        <param-name>database</param-name>
+        <param-value>hotel</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>controller</servlet-name>
+        <servlet-class>mvc.controller.ControllerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <description>jjjj</description>
+        <servlet-name>cargarfoto</servlet-name>
+        <servlet-class>mvc.controller.CommonsFileUploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>controller</servlet-name>
+        <url-pattern>/controller/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cargarfoto</servlet-name>
+        <url-pattern>/cargarfoto</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    context-param&gt;
+    
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    </web-app>
