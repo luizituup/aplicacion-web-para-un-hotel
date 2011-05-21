@@ -47,7 +47,7 @@
     .form-all{
         margin:0px auto;
         padding-top:0px;
-        width:484px;
+        width:483px;
         color:Black !important;
         font-family:Verdana;
         font-size:12px;
@@ -73,13 +73,12 @@
                     </h2>
                 </div>
             </li>
-
             <li class="form-line" id="id_4">
                 <label class="form-label-left" id="label_4" for="input_4">
                     Numero De Habitacion:<span class="form-required">*</span>
                 </label>
                 <div id="cid_4" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_4" name="q4_numeroDe" size="20" />
+                    <input type="text" class="form-textbox validate[required, Numeric]" id="Numero_Habitacion" name="Numero_Habitacion" size="20" />
                 </div>
             </li>
             <li class="form-line" id="id_2">
@@ -87,7 +86,7 @@
                     Estado de Habitacion:<span class="form-required">*</span>
                 </label>
                 <div id="cid_2" class="form-input">
-                    <select class="form-dropdown validate[required]" style="width:80px" id="input_2" name="q3_estadoH">
+                    <select class="form-dropdown validate[required]" style="width:80px" id="Estado" name="Estado">
                         <option>  </option>
                         <option selected="selected" value="Libre"> Libre </option>
                         <option value="ocupada"> Ocupada </option>
@@ -96,13 +95,11 @@
                 </div>
                  </li>
             <li class="form-line" id="id_3">
-
                 <label class="form-label-left" id="label_3" for="input_3">
                     Tipo de Habitacion:<span class="form-required">*</span>
                 </label>
-
                 <div id="cid_3" class="form-input">
-                    <select class="form-dropdown validate[required]" style="width:80px" id="input_3" name="q3_tipoDe">
+                    <select class="form-dropdown validate[required]" style="width:80px" id="Tipohabitacion" name="Tipohabitacion">
                         <option>  </option>
                         <option selected="selected" value="Suite"> Suite </option>
                         <option value="Normal"> Normal </option>
@@ -114,16 +111,15 @@
                     Valor:<span class="form-required">*</span>
                 </label>
                 <div id="cid_5" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_5" name="q5_valor" size="20" value="200.000" />
+                    <input type="text" class="form-textbox validate[required, Numeric]" id="Costo" name="Costo" size="20" value="200.000" />
                 </div>
             </li>
-
             <li class="form-line" id="id_7">
                 <label class="form-label-left" id="label_7" for="input_7">
                     Numero De Camas:<span class="form-required">*</span>
                 </label>
                 <div id="cid_7" class="form-input">
-                    <select class="form-dropdown validate[required]" style="width:50px" id="input_7" name="q7_numeroDe7">
+                    <select class="form-dropdown validate[required]" style="width:50px" id="numerocamas" name="numerocamas">
                         <option>  </option>
                         <option selected="selected" value="1 "> 1 </option>
                         <option value="2 "> 2 </option>
@@ -136,7 +132,7 @@
                     Aire Acondicionado:<span class="form-required">*</span>
                 </label>
                 <div id="cid_8" class="form-input">
-                    <select class="form-dropdown validate[required]" style="width:50px" id="input_8" name="q8_aireAcondicionado">
+                    <select class="form-dropdown validate[required]" style="width:50px" id="aire" name="aire">
                         <option>  </option>
                         <option selected="selected" value="Si"> Si </option>
                         <option value="No"> No </option>
@@ -148,7 +144,7 @@
                     Otros Detalles:<span class="form-required">*</span>
                 </label>
                 <div id="cid_9" class="form-input">
-                    <textarea id="input_9" class="form-textarea validate[required]" name="q9_otrosDetalles" cols="40" rows="6"></textarea>
+                    <textarea id="detalles" class="form-textarea validate[required]" name="detalles" cols="40" rows="6"></textarea>
                 </div>
             </li>
              <li class="form-line" id="id_6">
@@ -156,7 +152,7 @@
                     Codigo Tipo de Habitacion:<span class="form-required">*</span>
                 </label>
                 <div id="cid_6" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_6" name="q6_codigotipohabitacion" size="20" />
+                    <input type="text" class="form-textbox validate[required, Numeric]" id="cod_tipohabitacion" name="cod_tipohabitacion" size="20" />
                 </div>
             </li>
              <li class="form-line" id="id_6">
@@ -164,18 +160,18 @@
                     Codigo Recepcionista:<span class="form-required">*</span>
                 </label>
                 <div id="cid_6" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_6" name="q6_codigoRecepcionista" size="20" />
+                    <input type="text" class="form-textbox validate[required, Numeric]" id="cod_recepcionista" name="cod_recepcionista" size="20" />
                 </div>
             </li>
             <li class="form-line" id="id_2">
                 <div id="cid_2" class="form-input-wide">
                     <div style="text-align:left" class="form-buttons-wrapper">
                         <button id="input_2" type="submit" class="form-submit-button">
-                            Enviar
+                            Crear habitacion
                         </button>
                         &nbsp;
                         <button id="input_reset_2" type="reset" class="form-submit-reset">
-                            Clear Form
+                            Reset
                         </button>
                     </div>
                 </div>

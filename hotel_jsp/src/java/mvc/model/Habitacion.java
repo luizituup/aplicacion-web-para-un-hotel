@@ -33,8 +33,6 @@ public class Habitacion implements Serializable {
         return Tipohabitacion;
     }
 
-
-
     public void setNumero_Habitacion(int Numero_Habitacion) {
         this.Numero_Habitacion = Numero_Habitacion;
     }

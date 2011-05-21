@@ -20,8 +20,6 @@ public class Servicios implements Serializable {
      
     }
 
-
-
  public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }

@@ -15,12 +15,14 @@ import java.sql.SQLException;
  */
 public class Reserva implements Serializable{
 
+    private int Codigo_Cliente;
     private int Codigo;
     private String fecha_inicio;
     private String fecha_final;
+    private int numeropersonas;
     private int Codigo_Habitacion;
     private int Codigo_Recepcionista;
-    private int Codigo_Cliente;
+    
 
     /**
      * @return the Codigo
@@ -106,4 +108,18 @@ public class Reserva implements Serializable{
         this.Codigo_Cliente = Codigo_Cliente;
     }
 
+    /**
+     * @return the numeropersonas
+     */
+    public int getNumeropersonas() {
+        return numeropersonas;
+    }
+
+    /**
+     * @param numeropersonas the numeropersonas to set
+     */
+    public void setNumeropersonas(int numeropersonas) {
+        this.numeropersonas = numeropersonas;
+    }
+    
 }
