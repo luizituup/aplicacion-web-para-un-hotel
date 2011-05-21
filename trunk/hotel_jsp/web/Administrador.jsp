@@ -274,11 +274,11 @@ if (sesion.getAttribute("Tipos")==null){
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogServicios" class="ui-state-default ui-corner-all">Servicios</button></td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogNovedades" class="ui-state-default ui-corner-all">Novedades</button></td>
+                                                                            <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogNovedades" class="ui-state-default ui-corner-all"><a href="<%=BASEURL%>/UploadPhotos.jsp" target="Content" title="Upload"><span>Upload Photos</span></a></button></td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogContact" class="ui-state-default ui-corner-all">Contactanos</button></td>
-                                                    f                    </tr>
+                                                                        </tr>
                                                                         <tr>
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><a href="<%=request.getContextPath()%>/Gallery.jsp" target="Content" title="Gallery"><button id="dialogFotos" class="ui-state-default ui-corner-all">Fotos</button></a></td>
                                                                         </tr>                                                                        
@@ -299,23 +299,18 @@ if (sesion.getAttribute("Tipos")==null){
                                                                         <tr>
                                                                             <td align="left" valign="top" class="box_left_line">&nbsp;</td>
                                                                             <td  align="left" valign="top">
-                                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">                                                                                   
+                                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                                                     <tr>
                                                                                         <td height="20" align="center" valign="middle" class="highlight" style="text-transform:uppercase; font-size:10px;" onMouseOver="this.className='mainon'" onMouseOut="this.className='mainoff'">
-                                                                                            <span class="style4">Mi Perfil<br> <%=usuario%></span>
-                                                                                            <p>Cargar Foto:</p>
-                                                                                            <form action="cargarfoto" enctype="multipart/form-data" method="POST">
-                                                                                                    <input type="file" name="file1"><br>
-                                                                                                    <input type="Submit" value="Upload File"><br>
-                                                                                                </form>
-                                                                                        </td>
-                                                                                    </tr>
+                                                                                            <span class="style4">Mi Perfil: <br><%=usu.getUsuario()%></span>
+                                                                                        </td>                                                                                       
+                                                                                    </tr>                                                                                   
                                                                                     <tr>
                                                                                         <td height="22" align="center" valign="middle" onMouseOver="this.className='mainon'" onMouseOut="this.className='mainoff'">
-                                                                                            <button id="cerrarlasesion" class="ui-state-default ui-corner-all"><a href="<%=BASEURL%>/CerrarSession.jsp"><span>Cerrar Sessi&oacute;n</span></a></button>
+                                                                                            <button id="cerrarlasesion" class="ui-state-default ui-corner-all"><a href="<%=request.getContextPath()%>/CerrarSession.jsp"><span>Cerrar Sessi&oacute;n</span></a></button>
                                                                                         </td>
                                                                                     </tr>                                                                                                                                                                     
-                                                                                </table>
+                                                                              </table>
                                                                             </td>
                                                                             <td align="left" valign="top" class="box_right_line">&nbsp;</td>
                                                                         </tr>

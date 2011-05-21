@@ -518,4 +518,49 @@ public class Model implements Serializable{
 		}
 		return sw;
    }
+        public void registrarreserva (Reserva r) throws SQLException{
+            if(existereserva(r))
+                    throw new SQLException("Esta reserva  ya existe");
+		PreparedStatement pstmt=null;
+
+		try{
+
+                        pstmt=con.prepareStatement("INSERT INTO reserva VALUES (?,?,?,?,?,?,?)");
+                        pstmt.setInt(1, r.getCodigo_Cliente());
+                        pstmt.setInt(2, r.getCodigo());
+                        pstmt.setInt(3, r.getCodigo_Habitacion());
+                        pstmt.setInt(4, r.getCodigo_Recepcionista());
+                        pstmt.setInt(5, r.getNumeropersonas());
+                        pstmt.setString(6, r.getFecha_inicio());
+                        pstmt.setString(7, r.getFecha_final());
+
+			pstmt.executeUpdate();
+		}finally{
+			if(pstmt!=null){
+				pstmt.close();
+				pstmt=null;
+			}
+		}
+    }
+        private boolean existereserva(Reserva r) throws SQLException {
+                boolean sw=true;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+
+		try{
+			pstmt=con.prepareStatement("SELECT COUNT(*) FROM reserva WHERE codigo=? ");
+			pstmt.setInt(1,r.getCodigo());
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				if(rs.getString(1).equals("0"))
+					sw=false;
+		}finally{
+			if(rs!=null)
+				rs.close();
+
+			if(pstmt!=null)
+				pstmt.close();
+		}
+		return sw;
+    }
 }

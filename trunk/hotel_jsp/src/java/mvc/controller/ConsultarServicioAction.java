@@ -24,7 +24,7 @@ public class ConsultarServicioAction extends Action implements Serializable {
        String codigo = request.getParameter("codigo");
        int co= Integer.parseInt(codigo);
        Servicios s = new Servicios();
-       s.setCodigo(Integer.parseInt(null));
+       s.setCodigo(Integer.parseInt(codigo));
        System.out.println(s.getCodigo());
 
         try {

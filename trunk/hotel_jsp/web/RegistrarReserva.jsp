@@ -37,7 +37,7 @@
     .form-all{
         margin:0px auto;
         padding-top:0px;
-        width:485px;
+        width:483px;
         color:Black !important;
         font-family:Verdana;
         font-size:12px;
@@ -60,16 +60,25 @@
             <li id="cid_1" class="form-input-wide">
                 <div class="form-header-group">
                     <h2 id="header_1" class="form-header">
-                        Registrar Reserva:
+                        Consultar Cliente:
                     </h2>
                 </div>
             </li>
             <li class="form-line" id="id_3">
                 <label class="form-label-left" id="label_3" for="input_3">
-                    Cedula:<span class="form-required">*</span>
+                    Codigo:<span class="form-required">*</span>
                 </label>
                 <div id="cid_3" class="form-input">
                     <input type="text" class="form-textbox validate[required, Numeric]" id="input_3" name="q3_cedula" size="20" />
+                </div>
+            </li>
+            <li class="form-line" id="id_5">
+                <label class="form-label-left" id="label_5" for="input_5">
+                    Nombre Completo:<span class="form-required">*</span>
+                </label>
+                <div id="cid_5" class="form-input"><span class="form-sub-label-container"><input class="form-textbox validate[required]" type="text" size="10" name="q5_nombreCompleto5[first]" id="first_5" />
+                        <label class="form-sub-label" for="first_5" id="sublabel_first"> Nombre </label></span><span class="form-sub-label-container"><input class="form-textbox validate[required]" type="text" size="15" name="q5_nombreCompleto5[last]" id="last_5" />
+                        <label class="form-sub-label" for="last_5" id="sublabel_last"> Apellido </label></span>
                 </div>
             </li>
             <li class="form-line" id="id_4">
@@ -81,13 +90,26 @@
                     </div>
                 </div>
             </li>
-            <li class="form-line" id="id_5">
-                <label class="form-label-left" id="label_5" for="input_5">
-                    Nombre Completo:<span class="form-required">*</span>
+        </ul>
+    </div>
+</form>
+            <form class="jotform-form" action="http://www.jotform.com/submit.php" method="post" name="form_11225927262" id="11225927262" accept-charset="utf-8">
+    <input type="hidden" name="formID" value="11225927262" />
+    <div class="form-all">
+        <ul class="form-section">
+            <li id="cid_1" class="form-input-wide">
+                <div class="form-header-group">
+                    <h2 id="header_1" class="form-header">
+                        Registrar Reserva:
+                    </h2>
+                </div>
+            </li>
+            <li class="form-line" id="id_11">
+                <label class="form-label-left" id="label_11" for="input_11">
+                    Código Reserva:<span class="form-required">*</span>
                 </label>
-                <div id="cid_5" class="form-input"><span class="form-sub-label-container"><input class="form-textbox validate[required]" type="text" size="10" name="q5_nombreCompleto5[first]" id="first_5" />
-                        <label class="form-sub-label" for="first_5" id="sublabel_first"> Nombre </label></span><span class="form-sub-label-container"><input class="form-textbox validate[required]" type="text" size="15" name="q5_nombreCompleto5[last]" id="last_5" />
-                        <label class="form-sub-label" for="last_5" id="sublabel_last"> Apellido </label></span>
+                <div id="cid_11" class="form-input">
+                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_11" name="q11_codigoReserva" size="20" />
                 </div>
             </li>
             <li class="form-line" id="id_6">
@@ -133,7 +155,32 @@
                     Numero de Habitación:<span class="form-required">*</span>
                 </label>
                 <div id="cid_9" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_9" name="q9_numeroDe" size="20" value="1" />
+                    <select class="form-dropdown validate[required]" style="width:80px" id="input_8" name="q8_tipoHabitacion">
+                        <option selected="selected" value="---------"> --------- </option>
+                        <option value="1"> 1 </option>
+                        <option value="Normal"> 2 </option>
+                        <option value="Normal"> 3 </option>
+                        <option value="Normal"> 4 </option>
+                        <option value="Normal"> 5 </option>
+                        <option value="Normal"> 6 </option>
+                        <option value="Normal"> 7 </option>
+                    </select>
+                </div>
+            </li>
+            <li class="form-line" id="id_12">
+                <label class="form-label-left" id="label_12" for="input_12">
+                    Código de Recepcionista:<span class="form-required">*</span>
+                </label>
+                <div id="cid_12" class="form-input">
+                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_12" name="q12_codigoDe" size="20" />
+                </div>
+            </li>
+            <li class="form-line" id="id_12">
+                <label class="form-label-left" id="label_12" for="input_12">
+                    Código de Cliente:<span class="form-required">*</span>
+                </label>
+                <div id="cid_12" class="form-input">
+                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_12" name="q12_codigoDe" size="20" />
                 </div>
             </li>
             <li class="form-line" id="id_10">
@@ -151,31 +198,15 @@
                     </select>
                 </div>
             </li>
-            <li class="form-line" id="id_11">
-                <label class="form-label-left" id="label_11" for="input_11">
-                    Código Reserva:<span class="form-required">*</span>
-                </label>
-                <div id="cid_11" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_11" name="q11_codigoReserva" size="20" />
-                </div>
-            </li>
-            <li class="form-line" id="id_12">
-                <label class="form-label-left" id="label_12" for="input_12">
-                    Código de Recepcionista:<span class="form-required">*</span>
-                </label>
-                <div id="cid_12" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_12" name="q12_codigoDe" size="20" />
-                </div>
-            </li>
             <li class="form-line" id="id_2">
                 <div id="cid_2" class="form-input-wide">
                     <div style="text-align:center" class="form-buttons-wrapper">
                         <button id="input_2" type="submit" class="form-submit-button">
-                            Enviar
+                            Crear Reserva
                         </button>
                         &nbsp;
                         <button id="input_reset_2" type="reset" class="form-submit-reset">
-                            Clear Form
+                            Reset
                         </button>
                     </div>
                 </div>

@@ -16,13 +16,13 @@ public class ConsultarClienteAction extends Action implements Serializable {
 
     public void run() throws ServletException,IOException{
 
-         String Cedula = request.getParameter("cedula");
+         String Codigo = request.getParameter("codigo");
          Cliente c = new Cliente();
-         c.setCedula(Integer.parseInt(null));
-         System.out.println(c.getCedula());
+         c.setCodigo(Integer.parseInt(Codigo));
+         System.out.println(c.getCodigo());
 
         try {
-            List li= model.consultarcliente(Cedula);
+            List li= model.consultarcliente(Codigo);
             for (int i=0;i<li.size();i++){
                 c = (Cliente)li.get(i);
                 System.out.println(c.getCodigo());

@@ -40,11 +40,9 @@ public class CrearHabitacionAction extends Action implements Serializable {
         String cod_tipohab= request.getParameter("cod_tipohabitacion");
         String cod_recep=request.getParameter("cod_recepcionista");
 
-
         System.out.println("------"+num);
         System.out.println("------"+estado);
         System.out.println("------"+tipoh);
-
 
      	Habitacion h= new Habitacion();
         h.setNumero_Habitacion(Integer.parseInt(num));
@@ -57,8 +55,6 @@ public class CrearHabitacionAction extends Action implements Serializable {
         h.setCod_tipohab(Integer.parseInt(cod_tipohab));
         h.setCod_recepcionista(Integer.parseInt(cod_recep));
 
-
-
      	try{
      	  model.crearhabitacion(h);
      	}catch(Exception ex){
@@ -70,8 +66,6 @@ public class CrearHabitacionAction extends Action implements Serializable {
         if(rd==null)
           	throw new ServletException("No se pudo encontrar "+next);
         rd.forward(request,response);
-
-
         }
 }
 
