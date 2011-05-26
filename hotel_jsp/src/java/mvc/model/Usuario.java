@@ -7,11 +7,17 @@ import java.sql.*;
 
 public class Usuario implements Serializable{
 
-    private String Usuario;
+    private String Usuario = "eduardo barrios";
+    private String usuario2 = "deivis herrera";
     private String TipoUsuario;
     private int Clave;
 
     //Analizadores y Modificadores
+
+    public String getUsuario2() {
+        return usuario2;
+    }
+
     /**
      * @return the Nombre
      */
