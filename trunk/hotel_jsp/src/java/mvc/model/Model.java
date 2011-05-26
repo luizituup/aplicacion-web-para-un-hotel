@@ -518,6 +518,51 @@ public class Model implements Serializable{
 		}
 		return sw;
    }
+
+        public List listarhabitacion() throws SQLException, Exception {
+        if (!isConnect())
+		throw new SQLException("no hay conexcion");
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Habitacion h = null;
+        List lista = new LinkedList();
+        try {
+            ps =(PreparedStatement) con.prepareStatement("select * from habitacion");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                h = this.loadHabitacion(rs);
+                lista.add(h);
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+        }
+        return lista;
+    }
+
+        private Habitacion loadHabitacion(ResultSet rs) throws SQLException {
+        Habitacion h = new Habitacion();
+
+        h.setNumero_Habitacion(rs.getInt(1));
+        h.setEstado(rs.getString(2));
+        h.setTipohabitacion(rs.getString(3));
+        h.setCosto(rs.getInt(4));
+        h.setNumerocamas(rs.getInt(5));
+        h.setAire(rs.getString(6));
+        h.setDetalles(rs.getString(7));
+        h.setCod_tipohab(rs.getInt(8));
+        h.setCod_recepcionista(rs.getInt(9));
+
+        return h;
+    }
+
         public void registrarreserva (Reserva r) throws SQLException{
             if(existereserva(r))
                     throw new SQLException("Esta reserva  ya existe");

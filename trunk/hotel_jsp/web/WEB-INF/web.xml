@@ -25,17 +25,17 @@
         <servlet-class>mvc.controller.ControllerServlet</servlet-class>
     </servlet>
     <servlet>
-        <description>jjjj</description>
-        <servlet-name>cargarfoto</servlet-name>
-        <servlet-class>mvc.controller.CommonsFileUploadServlet</servlet-class>
+        <description>Carga de Archivos por JDSP</description>
+        <servlet-name>cargarservlet</servlet-name>
+        <servlet-class>mvc.controller.cargarservlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>controller</servlet-name>
         <url-pattern>/controller/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>cargarfoto</servlet-name>
-        <url-pattern>/cargarfoto</url-pattern>
+        <servlet-name>cargarservlet</servlet-name>
+        <url-pattern>/cargarservlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

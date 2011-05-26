@@ -14,11 +14,9 @@
         <title>Page: Upload Photos</title>
     </head>
     <body>
-        <form action="cargarfoto" enctype="multipart/form-data" method="POST">
-            <input name="file1" type="file" size="8">
-            <br>
-            <input type="Submit" value="Upload File">
-            <br>
+        <form name="form1" action="cargarservlet" method="post" enctype="multipart/form-data">
+          <input type="file" name="archivo"/>
+          <input type="submit" name="enviar" value="enviar"/>
         </form>
     </body>
 </html>

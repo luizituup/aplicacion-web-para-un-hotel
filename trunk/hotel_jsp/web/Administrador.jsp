@@ -207,6 +207,7 @@ if (sesion.getAttribute("Tipos")==null){
                                                                 <a href="#" class="top_link"><span>Habitacion</span></a>
                                                                 <ul class="sub">
                                                                     <li><a href="<%=request.getContextPath()%>/CrearHabitacion.jsp" target="Content" title="CrearHabit">Crear</a></li>
+                                                                    <li><a href="<%=request.getContextPath()%>/ListarHabitacion.jsp" target="Content" title="ListarHabit">Listar</a></li>
                                                                     <li><a href="<%=request.getContextPath()%>/ConsultarHabitacion.jsp" target="Content" title="ConsultarHabit">Consultar</a></li>
                                                                     <li><a href="<%=request.getContextPath()%>/AñadirDetalleHabitacion.jsp" target="Content" title="AñadirDetalleHabit">Añadir Detalle(Servicios)</a></li>
                                                                 </ul>
@@ -215,6 +216,7 @@ if (sesion.getAttribute("Tipos")==null){
                                                                 <a href="#" class="top_link"><span>Reserva</span></a>
                                                                 <ul class="sub">
                                                                     <li><a href="<%=request.getContextPath()%>/RegistrarReserva.jsp" target="Content" title="CrearR">Crear</a></li>
+                                                                    <li><a href="<%=request.getContextPath()%>/ListarReserva.jsp" target="Content" title="ListarReserva">Listar</a></li>
                                                                     <li><a href="<%=request.getContextPath()%>/ConsultarReserva.jsp" target="Content" title="ConsultarR">Consultar</a></li>
                                                                     <li><a href="<%=request.getContextPath()%>/ModificarReserva.jsp" target="Content" title="ModificarR">Modificar</a></li>
                                                                 </ul>
@@ -223,6 +225,7 @@ if (sesion.getAttribute("Tipos")==null){
                                                                 <a href="#" class="top_link"><span>Hospedaje</span></a>
                                                                 <ul class="sub">
                                                                     <li><a href="<%=request.getContextPath()%>/AsignarhabitacionHospedaje.jsp" target="Content" title="AsignarHabitH">Asignar Habitacion</a></li>
+                                                                    <li><a href="<%=request.getContextPath()%>/ListarHospedaje.jsp" target="Content" title="ListarHospedaje">Lista de Hospedaje</a></li>
                                                                     <li><a href="<%=request.getContextPath()%>/ConsultarHospedaje.jsp" target="Content" title="ConsultarH">Consultar</a></li>
                                                                     <li><a href="<%=request.getContextPath()%>/ModificarHospedaje.jsp" target="Content" title="ModificarH">Modificar</a></li>
                                                                 </ul>
@@ -302,7 +305,7 @@ if (sesion.getAttribute("Tipos")==null){
                                                                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                                                     <tr>
                                                                                         <td height="20" align="center" valign="middle" class="highlight" style="text-transform:uppercase; font-size:10px;" onMouseOver="this.className='mainon'" onMouseOut="this.className='mainoff'">
-                                                                                            <span class="style4">Mi Perfil: <br><%=usu.getUsuario()%></span>
+                                                                                            <span class="style4">Mi Perfil: BIENVENIDO RECEPCIONISTA <br><%=usu.getUsuario()%></span>
                                                                                         </td>                                                                                       
                                                                                     </tr>                                                                                   
                                                                                     <tr>
