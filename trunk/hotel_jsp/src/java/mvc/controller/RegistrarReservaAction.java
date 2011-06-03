@@ -7,6 +7,7 @@ package mvc.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -22,34 +23,42 @@ public class RegistrarReservaAction extends Action implements Serializable {
      HttpSession session =null;//request.getSession(true);
 
      public void run () throws ServletException,IOException{
-        String cod_c= request.getParameter("cod_cliente");
-        String cod_r= request.getParameter("cod_reserva");
-        String f_inicio=request.getParameter("f_inicio");
-        String f_final=request.getParameter("f_final");
+        
+        String cod= request.getParameter("codigo");
+        String iniday=request.getParameter("inicioday");
+        String inimonth=request.getParameter("iniciomonth");
+        String iniyear=request.getParameter("inicioyear");
+        String finday=request.getParameter("finalday");
+        String finmonth=request.getParameter("finalmonth");
+        String finyear=request.getParameter("finalyear");
+        String estad=request.getParameter("estado");
+        String cost=request.getParameter("costo");
+        String nh= request.getParameter("n_habitacion");
         String numper= request.getParameter("n_personas");
-        String cod_h= request.getParameter("cod_habitacion");
         String cod_rep= request.getParameter("cod_recepcionista");
+        String cod_cli= request.getParameter("cod_cliente");
 
-        System.out.println("------"+ cod_r);
+        System.out.println("------"+ cod);
 
         Reserva r=new Reserva ();
-        int cod_cliente= Integer.parseInt(cod_c);
-        int cod_reserva = Integer.parseInt(cod_r);
-        int n_persona = Integer.parseInt(numper);
-        int cod_habitacion = Integer.parseInt(cod_h);
-        int cod_recepcionista = Integer.parseInt(cod_rep);
-        r.setCodigo_Cliente(cod_cliente);
-        r.setCodigo(cod_reserva);
-        r.setFecha_inicio( f_inicio);
-        r.setFecha_final(f_final);
-        r.setNumeropersonas(n_persona);
-        r.setCodigo_Habitacion(cod_habitacion);
-        r.setCodigo_Recepcionista(cod_recepcionista);
+        r.setCodigo(Integer.parseInt(cod));
+        r.setInicioday(Integer.parseInt(iniday));
+        r.setIniciomonth(Integer.parseInt(inimonth));
+        r.setInicioyear(Integer.parseInt(iniyear));
+        r.setFinalday(Integer.parseInt(finday));
+        r.setFinalmonth(Integer.parseInt(finmonth));
+        r.setFinalyear(Integer.parseInt(finyear));
+        r.setEstado(estad);
+        r.setCosto(Integer.parseInt(cost));
+        r.setNumero_Habitacion(Integer.parseInt(nh));
+        r.setNumeropersonas(Integer.parseInt(numper));
+        r.setCodigo_Recepcionista(Integer.parseInt(cod_rep));
+        r.setCodigo_Cliente(Integer.parseInt(cod_cli));
 
      	try{
      	  model.registrarreserva(r);
      	}catch(Exception ex){
-     	   throw new ServletException("Error al Registrar Cliente: "+ex);
+     	   throw new ServletException("Error al Registrar Reserva: "+ex);
 	}
 
      	next = "/newjsp.jsp";

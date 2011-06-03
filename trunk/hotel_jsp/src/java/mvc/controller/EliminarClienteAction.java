@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import mvc.model.Cliente;
 
 /**
  *
@@ -21,9 +22,9 @@ public class EliminarClienteAction extends Action implements Serializable {
 
         String Codigo = request.getParameter("Codigo");
 
-//        Cliente c = new Cliente();
-//        c.setCodigo(Integer.parseInt(Id));
-//        System.out.println(c.getCodigo());
+        Cliente c = new Cliente();
+        c.setCodigo(Integer.parseInt(Codigo));
+        System.out.println(c.getCodigo());
 
         try {
             model.eliminarcliente(Codigo);
@@ -38,28 +39,5 @@ public class EliminarClienteAction extends Action implements Serializable {
             } catch (Exception ex) {
                 throw new ServletException("Error al Eliminar el Cliente " + ex);
             }
-
-         /* try{
-                try{
-                    String usuario=request.getParameter("login");
-                    String contraseña=request.getParameter("password");
-                    Usuario us=(Usuario)model.consultarUsuario(usuario,contraseña);
-
-                    request.setAttribute("user",us);
-
-                    request.getSession().setAttribute("login",us.getLogin());
-                    request.setAttribute("nombres",us.getNombres());
-                    request.setAttribute("apellidos",us.getApellidos());
-                    request.setAttribute("celular",us.getCelular());
-                    request.setAttribute("telefono",us.getTelefono());
-                    request.setAttribute("email",us.getEmail());*/
-	/*	    System.out.println(us.getLogin());
-
-                    }catch (Exception e){
-		     	throw new ServletException(e.getMessage());
-		     }
-                        }catch(NumberFormatException e){
-                            throw new NumberFormatException(e.getMessage());
-                        }*/
     }
 }
