@@ -9,11 +9,20 @@
 <%@ page errorPage="/ErrorPages.jsp"%>
 <%@ page import ="java.text.DecimalFormat"%>
 <%@ page import="java.sql.*"%>
-<%@ include file="/WEB-INF/InitModel.jsp" %>
+
 <%@ page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
+<jsp:useBean id="model" scope="session" class="mvc.model.WebModel"/>
 <jsp:useBean id="cli" scope="session" class="mvc.model.Cliente"/>
+<%
+    model.init(application);
+       HttpSession sesion=request.getSession();
+    request= (HttpServletRequest)pageContext.getRequest();
+    String BASEURL= request.getContextPath();
+    String CONTROLLER=BASEURL + "/controller";
+
+ %>
 
 <html>
     <head>
@@ -65,7 +74,7 @@
            if(codigo!=null){
               cli.setCodigo(Integer.parseInt(codigo));
         %>
-        <form class="jotform-form" action="<%=CONTROLLER%>/Modificar/Cliente?codigo=<%=cli.getCodigo()%>" method="post" name="form_11223945270" id="11223945270" accept-charset="utf-8">
+        <form class="jotform-form" action="<%=CONTROLLER%>/Modificar/Cliente" method="post" name="form_11223945270" id="11223945270" accept-charset="utf-8">
         <%
         if(model.existecliente(cli)){
         cli = model.extraercliente(codigo);
@@ -93,7 +102,7 @@
                     Nombres:<span class="form-required">*</span>
                 </label>
                 <div id="cid_6" class="form-input"><span class="form-sub-label-container"><input class="form-textbox validate[required]" type="text" size="10" name="Pnombre" id="Pnombre" value="<%=cli.getPnombre()%>" />
-                        <label class="form-sub-label" for="first_6" id="sublabel_first"> Primer Nombre </label></span><span class="form-sub-label-container"><input class="form-textbox validate[required]" type="text" size="15" name="Snombre" id="Snombre" />
+                        <label class="form-sub-label" for="first_6" id="sublabel_first"> Primer Nombre </label></span><span class="form-sub-label-container"><input class="form-textbox validate[required]" value="<%=cli.getSnombre()%>" type="text" size="15" name="Snombre" id="Snombre" />
                         <label class="form-sub-label" for="last_6" id="sublabel_last"> Segundo Nombre </label></span>
                 </div>
             </li>

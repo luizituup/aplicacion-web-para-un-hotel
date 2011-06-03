@@ -15,12 +15,12 @@ public class ModificarClienteAction extends Action implements Serializable{
      public void run() throws ServletException,IOException{
          
             Cliente c =new Cliente();
-            String cdu = request.getParameter("cedula");
+            String codi=request.getParameter("codigo");
             String Pnom=request.getParameter("Pnombre");
             String Snom=request.getParameter("Snombre");
             String Papell=request.getParameter("Papellido");
             String Sapell=request.getParameter("Sapellido");
-            String codi=request.getParameter("codigo");
+            String cdu = request.getParameter("cedula");
             String sex=request.getParameter("sexo");
             String Direccion = request.getParameter("Direccion");
             String Telefono = request.getParameter("Telefono");
@@ -48,7 +48,7 @@ public class ModificarClienteAction extends Action implements Serializable{
             RequestDispatcher rd = application.getRequestDispatcher(next);
             if (rd == null)
                 throw new ServletException("No se pudo encontrar " + next);
-            rd.forward(request, response);
+                rd.forward(request, response);
 
      }
 

@@ -1,13 +1,25 @@
 <%-- 
     Document   : ConsultarHabitacion
     Created on : 2/05/2011, 11:44:18 AM
-    Author     : usuario
+    Author     : eduardo
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import= "java.util.*" %>
+<%@ page import= "mvc.model.*" %>
+<%@ page errorPage="/ErrorPages.jsp"%>
+<%@page import ="java.text.DecimalFormat"%>
+<%@page import="java.sql.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
+<jsp:useBean id="model" scope="session" class="mvc.model.WebModel"/>
+<%@page import="mvc.model.Habitacion"%>
+<%
+    model.init(application);
+    HttpSession sesion=request.getSession();
+    request= (HttpServletRequest)pageContext.getRequest();
+    String BASEURL= request.getContextPath();
+    String CONTROLLER=BASEURL + "/controller";
+ %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -51,7 +63,7 @@
 </script>
     </head>
     <body>
-        <form class="jotform-form" action="http://www.jotform.com/submit.php" method="post" name="form_11223551222" id="11223551222" accept-charset="utf-8">
+        <form class="jotform-form" action=" <%=CONTROLLER%>/Consultar/Habitacion" method="post" name="form_11223551222" id="11223551222" accept-charset="utf-8">
     <input type="hidden" name="formID" value="11223551222" />
     <div class="form-all">
         <ul class="form-section">
@@ -67,85 +79,51 @@
                     Numero Habitación:<span class="form-required">*</span>
                 </label>
                 <div id="cid_3" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_3" name="q3_numeroHabitacion" size="20" />
-                </div>
-            </li>
-            <li class="form-line" id="id_4">
-                <label class="form-label-left" id="label_4" for="input_4">
-                    Tipo de Habitación:<span class="form-required">*</span>
-                </label>
-                <div id="cid_4" class="form-input">
-                    <select class="form-dropdown validate[required]" style="width:80px" id="input_4" name="q4_tipoDe">
-                        <option>  </option>
-                        <option selected="selected" value="Suite"> Suite </option>
-                        <option value="Normal"> Normal </option>
-                    </select>
-                </div>
-            </li>
-            <li class="form-line" id="id_5">
-                <label class="form-label-left" id="label_5" for="input_5">
-                    Valor:<span class="form-required">*</span>
-                </label>
-                <div id="cid_5" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="input_5" name="q5_valor" size="20" />
-                </div>
-            </li>
-            <li class="form-line" id="id_6">
-                <label class="form-label-left" id="label_6" for="input_6">
-                    Numero De Camas:<span class="form-required">*</span>
-                </label>
-                <div id="cid_6" class="form-input">
-                    <select class="form-dropdown validate[required]" style="width:50px" id="input_6" name="q6_numeroDe">
-                        <option>  </option>
-                        <option selected="selected" value="1 "> 1 </option>
-                        <option value="2 "> 2 </option>
-                        <option value="3"> 3 </option>
-                    </select>
-                </div>
-            </li>
-            <li class="form-line" id="id_7">
-                <label class="form-label-left" id="label_7" for="input_7">
-                    Aire Acondicionado:<span class="form-required">*</span>
-                </label>
-                <div id="cid_7" class="form-input">
-                    <select class="form-dropdown validate[required]" style="width:50px" id="input_7" name="q7_aireAcondicionado">
-                        <option>  </option>
-                        <option selected="selected" value="Si"> Si </option>
-                        <option value="No"> No </option>
-                    </select>
-                </div>
-            </li>
-            <li class="form-line" id="id_8">
-                <label class="form-label-left" id="label_8" for="input_8">
-                    Recepcionista:<span class="form-required">*</span>
-                </label>
-                <div id="cid_8" class="form-input">
-                    <input type="text" class="form-textbox validate[required]" id="input_8" name="q8_recepcionista" size="20" />
+                    <input type="text" id="numero" name="numero" size="20" />
                 </div>
             </li>
             <li class="form-line" id="id_2">
                 <div id="cid_2" class="form-input-wide">
                     <div style="text-align:center" class="form-buttons-wrapper">
                         <button id="input_2" type="submit" class="form-submit-button">
-                            Aceptar
-                        </button>
-                        &nbsp;
-                        <button id="input_reset_2" type="reset" class="form-submit-reset">
-                            Clear Form
+                            Consultar
                         </button>
                     </div>
                 </div>
             </li>
-            <li style="display:none">
-                Should be Empty:
-                <input type="text" name="website" value="" />
-            </li>
+            <table width="485" border="1" align="center">
+                <tr>
+                    <td><strong><font size="+1"></font><font size="+1">Numero Habitacion</font></strong></td>
+                    <td><strong><font size="+1">Estado</font></strong></td>
+                    <td><strong><font size="+1">Tipo Habitacion</font></strong></td>
+                    <td><strong><font size="+1">Costo</font></strong></td>
+                    <td><strong><font size="+1">Numero Camas</font></strong></td>
+                    <td><strong><font size="+1">Aire</font></strong></td>
+                    <td><strong><font size="+1">Detalles</font></strong></td>
+                    <td><strong><font size="+1">Codigo Recepcionista</font></strong></td>
+                </tr>
+                    <%
+                    String numero = request.getParameter("numero");
+                    List lie = model.consultarhabitacion(numero);
+                        for(int ie2=0;ie2<lie.size();ie2++) {
+                        mvc.model.Habitacion h=(mvc.model.Habitacion)lie.get(ie2);
+                    %>
+                <tr>
+                    <td><font size="+1"><%=h.getNumero_Habitacion()%></font></td>
+                    <td><font size="+1"><%=h.getEstado()%></font></td>
+                    <td><font size="+1"><%=h.getTipohabitacion()%></font></td>
+                    <td><font size="+1"><%=h.getCosto()%></font></td>
+                    <td><font size="+1"><%=h.getNumerocamas()%></font></td>
+                    <td><font size="+1"><%=h.getAire()%></font></td>
+                    <td><font size="+1"><%=h.getDetalles()%></font></td>
+                    <td><font size="+1"><%=h.getCod_recepcionista()%></font></td>
+                    <td><font><a href="<%=request.getContextPath()%>/ModificarHabitacion.jsp?numero=<%=h.getNumero_Habitacion()%>">Modificar</a></font></td>
+                </tr>
+                <%}%>
+                <% %>
+            </table>
         </ul>
     </div>
-    <input type="hidden" id="simple_spc" name="simple_spc" value="11223551222" />
-    <script type="text/javascript">
-        document.getElementById("si" + "mple" + "_spc").value = "11223551222-11223551222";
-    </script>
 </form>
     </body>
 </html>

@@ -11,8 +11,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-<jsp:useBean id="model" scope="session" class="mvc.model.Model"/>
+<jsp:useBean id="model" scope="session" class="mvc.model.WebModel"/>
 <%@page import="mvc.model.Cliente"%>
+<%
+    model.init(application);
+       HttpSession sesion=request.getSession();
+    request= (HttpServletRequest)pageContext.getRequest();
+    String BASEURL= request.getContextPath();
+    String CONTROLLER=BASEURL + "/controller";
+
+ %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -50,7 +58,7 @@
 </style>
     </head>
     <body>
-      <form method="post">
+        <form action="<%=CONTROLLER%>/Consultar/Cliente" method="post">
     <input type="hidden" name="formID" value="11245838084" />
     <div class="form-all">
         <ul class="form-section">
@@ -112,6 +120,7 @@
                     <td><font size="+1"><%=cli.getEmail()%></font></td>
                     <td><font size="+1"><%=cli.getCod_recepcionista()%></font></td>
                     <td><font><a href="<%=request.getContextPath()%>/ModificarCliente.jsp?codigo=<%=cli.getCodigo()%>">Modificar</a></font></td>
+                    <td><font><a href="<%=request.getContextPath()%>/Cliente.jsp?compra=<%=cli.getCodigo()%>">Eliminar</a></font></td>
                 </tr>
                 <%}%>
                 <% %>

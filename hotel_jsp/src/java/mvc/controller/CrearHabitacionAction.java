@@ -37,12 +37,14 @@ public class CrearHabitacionAction extends Action implements Serializable {
         String numeroc=request.getParameter("numerocamas");
         String aire=request.getParameter("aire");
         String detalles=request.getParameter("detalles");
-        String cod_tipohab= request.getParameter("cod_tipohabitacion");
+
         String cod_recep=request.getParameter("cod_recepcionista");
+
 
         System.out.println("------"+num);
         System.out.println("------"+estado);
         System.out.println("------"+tipoh);
+
 
      	Habitacion h= new Habitacion();
         h.setNumero_Habitacion(Integer.parseInt(num));
@@ -52,8 +54,10 @@ public class CrearHabitacionAction extends Action implements Serializable {
         h.setNumerocamas(Integer.parseInt(numeroc));
         h.setAire(aire);
         h.setDetalles(detalles);
-        h.setCod_tipohab(Integer.parseInt(cod_tipohab));
+
         h.setCod_recepcionista(Integer.parseInt(cod_recep));
+
+
 
      	try{
      	  model.crearhabitacion(h);

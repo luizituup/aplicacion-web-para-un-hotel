@@ -3,6 +3,8 @@
 package mvc.model;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -18,7 +20,6 @@ public class Habitacion implements Serializable {
     private int numerocamas;
     private String aire;
     private String detalles;
-    private int cod_tipohab;
     private int cod_recepcionista;
 
     public int getNumero_Habitacion() {
@@ -29,9 +30,8 @@ public class Habitacion implements Serializable {
         return Estado;
     }
 
-    public String getTipohabitacion() {
-        return Tipohabitacion;
-    }
+
+
 
     public void setNumero_Habitacion(int Numero_Habitacion) {
         this.Numero_Habitacion = Numero_Habitacion;
@@ -81,15 +81,31 @@ public class Habitacion implements Serializable {
         this.numerocamas = numerocamas;
     }
 
-    public int getCod_tipohab() {
-        return cod_tipohab;
+
+
+    public String getTipohabitacion() {
+        return Tipohabitacion;
     }
 
-    public void setCod_tipohab(int cod_tipohab) {
-        this.cod_tipohab = cod_tipohab;
-    }
 
     public int getCosto() {
         return Costo;
     }
+
+
+
+    public static Habitacion load(ResultSet rs)throws SQLException{
+
+		Habitacion s = new Habitacion ();
+                s.setNumero_Habitacion(rs.getInt(1));
+                s.setEstado(rs.getString(2));
+                s.setTipohabitacion(rs.getString(3));
+                s.setCosto(rs.getInt(4));
+                s.setNumerocamas(rs.getInt(5));
+                s.setAire(rs.getString(6));
+                s.setDetalles(rs.getString(7));
+                s.setCod_recepcionista(rs.getInt(8));
+
+		return s;
+	}
 }

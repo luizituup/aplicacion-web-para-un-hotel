@@ -3,7 +3,7 @@ package mvc.model;
 
 /**
  *
- * @author Alex
+ * @author hotel balcones
  */
 import java.io.*;
 import java.sql.*;
@@ -119,7 +119,7 @@ public class Model implements Serializable{
                         pstmt.setString(8, c.getDireccion());
                         pstmt.setInt(9, c.getTelefono());
                         pstmt.setString(10, c.getEmail());
-                        
+
                         pstmt.setInt(11, c.getCod_recepcionista());
 
 			pstmt.executeUpdate();
@@ -165,7 +165,7 @@ public class Model implements Serializable{
 
 		try{
 			ps=con.prepareStatement("select * from cliente where codigo=?");
-			ps.setInt(1,c.getCodigo());
+			ps.setString(1, codigo);
 			rs=ps.executeQuery();
 
                         while (rs.next()) {
@@ -431,8 +431,8 @@ public class Model implements Serializable{
     }
 
     private Servicios loadServicio(ResultSet rs) throws SQLException {
-        Servicios s = new Servicios();
 
+        Servicios s = new Servicios();
         s.setCodigo(rs.getInt(1));
         s.setCantidad(rs.getInt(2));
         s.setNombre(rs.getString(3));
@@ -441,7 +441,7 @@ public class Model implements Serializable{
         return s;
     }
 
-    public List consultarservicio(int codigo) throws SQLException{
+    public List consultarservicio(String codigo) throws SQLException{
 
 		PreparedStatement ps = null;
                 ResultSet rs = null;
@@ -450,7 +450,7 @@ public class Model implements Serializable{
 
 		try{
 			ps=con.prepareStatement("SELECT * FROM servicio WHERE codigo=?");
-			ps.setInt(1,s.getCodigo());
+			ps.setString(1, codigo);
 			rs=ps.executeQuery();
 
                         while (rs.next()) {
@@ -475,7 +475,7 @@ public class Model implements Serializable{
 
 		try{
 
-                        pstmt=con.prepareStatement("INSERT INTO habitacion VALUES (?,?,?,?,?,?,?,?,?)");
+                        pstmt=con.prepareStatement("INSERT INTO habitacion VALUES (?,?,?,?,?,?,?,?)");
                         pstmt.setInt(1, ha.getNumero_Habitacion());
                         pstmt.setString(2,ha.getEstado());
                         pstmt.setString(3,ha.getTipohabitacion());
@@ -483,8 +483,8 @@ public class Model implements Serializable{
                         pstmt.setInt(5,ha.getNumerocamas());
                         pstmt.setString(6,ha.getAire());
                         pstmt.setString(7,ha.getDetalles());
-                        pstmt.setInt(8,ha.getCod_tipohab());
-                        pstmt.setInt(9, ha.getCod_recepcionista());
+
+                        pstmt.setInt(8, ha.getCod_recepcionista());
 
 
 			pstmt.executeUpdate();
@@ -518,6 +518,33 @@ public class Model implements Serializable{
 		}
 		return sw;
    }
+        public List consultarhabitacion(String numero) throws SQLException{
+
+		PreparedStatement ps = null;
+                ResultSet rs = null;
+                Habitacion h = null;
+                List lista = new LinkedList();
+
+		try{
+			ps=con.prepareStatement("SELECT * FROM habitacion WHERE numero=?");
+			ps.setString(1, numero);
+			rs=ps.executeQuery();
+
+                        while (rs.next()) {
+                            h = mvc.model.Habitacion.load(rs);
+                            lista.add(h);
+            }
+		}finally{
+			if(rs!=null)
+				rs.close();
+
+			if(ps!=null)
+				ps.close();
+		}
+
+		return lista;
+    }
+
 
         public List listarhabitacion() throws SQLException, Exception {
         if (!isConnect())
@@ -557,11 +584,14 @@ public class Model implements Serializable{
         h.setNumerocamas(rs.getInt(5));
         h.setAire(rs.getString(6));
         h.setDetalles(rs.getString(7));
-        h.setCod_tipohab(rs.getInt(8));
-        h.setCod_recepcionista(rs.getInt(9));
+
+        h.setCod_recepcionista(rs.getInt(8));
 
         return h;
     }
+
+
+
 
         public void registrarreserva (Reserva r) throws SQLException{
             if(existereserva(r))
@@ -570,14 +600,20 @@ public class Model implements Serializable{
 
 		try{
 
-                        pstmt=con.prepareStatement("INSERT INTO reserva VALUES (?,?,?,?,?,?,?)");
-                        pstmt.setInt(1, r.getCodigo_Cliente());
-                        pstmt.setInt(2, r.getCodigo());
-                        pstmt.setInt(3, r.getCodigo_Habitacion());
-                        pstmt.setInt(4, r.getCodigo_Recepcionista());
-                        pstmt.setInt(5, r.getNumeropersonas());
-                        pstmt.setString(6, r.getFecha_inicio());
-                        pstmt.setString(7, r.getFecha_final());
+                        pstmt=con.prepareStatement("INSERT INTO reserva VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                        pstmt.setInt(1, r.getCodigo());
+                        pstmt.setInt(2, r.getInicioday());
+                        pstmt.setInt(3, r.getIniciomonth());
+                        pstmt.setInt(4, r.getInicioyear());
+                        pstmt.setInt(5, r.getFinalday());
+                        pstmt.setInt(6, r.getFinalmonth());
+                        pstmt.setInt(7, r.getFinalyear());
+                        pstmt.setString(8, r.getEstado());
+                        pstmt.setInt(9, r.getCosto());
+                        pstmt.setInt(10, r.getNumero_Habitacion());
+                        pstmt.setInt(11, r.getNumeropersonas());
+                        pstmt.setInt(12, r.getCodigo_Recepcionista());
+                        pstmt.setInt(13, r.getCodigo_Cliente());
 
 			pstmt.executeUpdate();
 		}finally{
@@ -587,7 +623,8 @@ public class Model implements Serializable{
 			}
 		}
     }
-        private boolean existereserva(Reserva r) throws SQLException {
+
+    private boolean existereserva(Reserva r) throws SQLException {
                 boolean sw=true;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -606,6 +643,220 @@ public class Model implements Serializable{
 			if(pstmt!=null)
 				pstmt.close();
 		}
+		return sw;
+    }
+
+        public List consultarreserva(String codigo) throws SQLException{
+
+		PreparedStatement ps = null;
+                ResultSet rs = null;
+                Reserva s = null;
+                List lista = new LinkedList();
+
+		try{
+			ps=con.prepareStatement("SELECT * FROM reserva WHERE codigo=?");
+			ps.setString(1, codigo);
+			rs=ps.executeQuery();
+
+                        while (rs.next()) {
+                            s = mvc.model.Reserva.load(rs);
+                            lista.add(s);
+            }
+		}finally{
+			if(rs!=null)
+				rs.close();
+
+			if(ps!=null)
+				ps.close();
+		}
+
+		return lista;
+    }
+
+    public List listarreserva() throws SQLException, Exception {
+        if (!isConnect())
+		throw new SQLException("no hay conexcion");
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Reserva r = null;
+        List lista = new LinkedList();
+        try {
+            ps =(PreparedStatement) con.prepareStatement("select * from reserva");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                r = mvc.model.Reserva.load(rs);
+                lista.add(r);
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+        }
+        return lista;
+    }
+
+    private boolean existehospedaje(Hospedaje h) throws SQLException {
+
+                boolean sw=true;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+
+		try{
+			pstmt=con.prepareStatement("SELECT COUNT(*) FROM hospedaje WHERE codigo=? ");
+			pstmt.setInt(1,h.getCod_hospedaje());
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				if(rs.getString(1).equals("0"))
+					sw=false;
+		}finally{
+			if(rs!=null)
+				rs.close();
+
+			if(pstmt!=null)
+				pstmt.close();
+		}
+		return sw;
+    }
+
+   public void asignarhospedaje (Hospedaje h) throws SQLException{
+            if(existehospedaje(h))
+                    throw new SQLException("Esta este hospedaje  ya existe");
+                    PreparedStatement pstmt=null;
+
+		try{
+
+                        pstmt=con.prepareStatement("INSERT INTO hospedaje VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+                        pstmt.setInt(1, h.getCod_hospedaje());
+                        pstmt.setInt(2, h.getInicioday());
+                        pstmt.setInt(3, h.getIniciomonth());
+                        pstmt.setInt(4, h.getInicioyear());
+                        pstmt.setInt(5, h.getFinalday());
+                        pstmt.setInt(6, h.getFinalmonth());
+                        pstmt.setInt(7, h.getFinalyear());
+                        pstmt.setInt(8, h.getValor());
+                        pstmt.setInt(9, h.getCod_cliente());
+                        pstmt.setInt(10, h.getCod_habitacion());
+                        pstmt.setInt(11, h.getCod_recepcionista());
+
+                        pstmt.setString(12, h.getAcompañante());
+
+			pstmt.executeUpdate();
+		}finally{
+			if(pstmt!=null){
+				pstmt.close();
+				pstmt=null;
+			}
+		}
+    }
+
+   public List consultarhospedaje(String codigo) throws SQLException{
+
+		PreparedStatement ps = null;
+                ResultSet rs = null;
+                Hospedaje h = null;
+                List lista = new LinkedList();
+
+		try{
+			ps=con.prepareStatement("SELECT * FROM hospedaje WHERE codigo=?");
+			ps.setString(1, codigo);
+			rs=ps.executeQuery();
+
+                        while (rs.next()) {
+                            h = mvc.model.Hospedaje.load(rs);
+                            lista.add(h);
+            }
+		}finally{
+			if(rs!=null)
+				rs.close();
+
+			if(ps!=null)
+				ps.close();
+		}
+
+		return lista;
+    }
+
+   public List listarhospedaje() throws SQLException, Exception {
+        if (!isConnect())
+		throw new SQLException("no hay conexcion");
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Hospedaje h = null;
+        List lista = new LinkedList();
+        try {
+            ps =(PreparedStatement) con.prepareStatement("select * from hospedaje");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                h = mvc.model.Hospedaje.load(rs);
+                lista.add(h);
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+        }
+        return lista;
+    }
+
+   public void registrarconsumo (Consumo co)throws SQLException{
+                if(existeconsumo(co))
+                    throw new SQLException("Este consumo ya existe");
+		PreparedStatement pstmt=null;
+
+		try{
+
+                        pstmt=con.prepareStatement("INSERT INTO consumo VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+                        pstmt.setInt(1, co.getCodigo());
+                        pstmt.setInt(2,co.getCod_cliente());
+                        pstmt.setInt(3,co.getServicios());
+                        pstmt.setInt(4,co.getCantidad());
+                        pstmt.setInt(5,co.getFechaday());
+                        pstmt.setInt(6, co.getFechamonth());
+                        pstmt.setInt(7,co.getFechayear());
+
+			pstmt.executeUpdate();
+		}finally{
+			if(pstmt!=null){
+				pstmt.close();
+				pstmt=null;
+			}
+		}
+    }
+
+   public boolean existeconsumo(Consumo co) throws SQLException{
+                if (!isConnect())
+			throw new SQLException("no hay conexcion");
+		boolean sw=true;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+
+		try{
+			pstmt=con.prepareStatement("SELECT COUNT(*) FROM consumo WHERE codigo=?");
+			pstmt.setInt(1, co.getCodigo());
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				if(rs.getString(1).equals("0"))
+					sw=false;
+		}finally{
+			if(rs!=null)
+				rs.close();
+
+			if(pstmt!=null)
+				pstmt.close();
+		}
+
 		return sw;
     }
 }

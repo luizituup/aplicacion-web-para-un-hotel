@@ -47,7 +47,7 @@
     .form-all{
         margin:0px auto;
         padding-top:0px;
-        width:483px;
+        width:484px;
         color:Black !important;
         font-family:Verdana;
         font-size:12px;
@@ -73,6 +73,7 @@
                     </h2>
                 </div>
             </li>
+
             <li class="form-line" id="id_4">
                 <label class="form-label-left" id="label_4" for="input_4">
                     Numero De Habitacion:<span class="form-required">*</span>
@@ -95,9 +96,11 @@
                 </div>
                  </li>
             <li class="form-line" id="id_3">
+
                 <label class="form-label-left" id="label_3" for="input_3">
                     Tipo de Habitacion:<span class="form-required">*</span>
                 </label>
+
                 <div id="cid_3" class="form-input">
                     <select class="form-dropdown validate[required]" style="width:80px" id="Tipohabitacion" name="Tipohabitacion">
                         <option>  </option>
@@ -114,6 +117,7 @@
                     <input type="text" class="form-textbox validate[required, Numeric]" id="Costo" name="Costo" size="20" value="200.000" />
                 </div>
             </li>
+
             <li class="form-line" id="id_7">
                 <label class="form-label-left" id="label_7" for="input_7">
                     Numero De Camas:<span class="form-required">*</span>
@@ -167,7 +171,7 @@
                 <div id="cid_2" class="form-input-wide">
                     <div style="text-align:left" class="form-buttons-wrapper">
                         <button id="input_2" type="submit" class="form-submit-button">
-                            Crear habitacion
+                            Crear Habitacion
                         </button>
                         &nbsp;
                         <button id="input_reset_2" type="reset" class="form-submit-reset">

@@ -46,7 +46,7 @@
                     <td width="40%" bordercolor="#000000" bgcolor="#9797FF"><div align="center"><strong><font size="+1">Numero de Camas</font></strong></div></td>
                     <td width="40%" bordercolor="#000000" bgcolor="#9797FF"><div align="center"><strong><font size="+1">Tiene Aire</font></strong></div></td>
                     <td width="40%" bordercolor="#000000" bgcolor="#9797FF"><div align="center"><strong><font size="+1">Detalles de Habitacion</font></strong></div></td>
-                    <td width="40%" bordercolor="#000000" bgcolor="#9797FF"><div align="center"><strong><font size="+1">Codigo del Tipo</font></strong></div></td>
+    
                     <td width="40%" bordercolor="#000000" bgcolor="#9797FF"><div align="center"><strong><font size="+1">Codigo de Recepcionista</font></strong></div></td>
                 </tr>
                     <%
@@ -63,7 +63,7 @@
                     <td width="40%"><div align="center"><font size="+1"><%=h.getNumerocamas()%></font></div></td>
                     <td width="40%"><div align="center"><font size="+1"><%=h.getAire()%></font></div></td>
                     <td width="40%"><div align="center"><font size="+1"><%=h.getDetalles()%></font></div></td>
-                    <td width="40%"><div align="center"><font size="+1"><%=h.getCod_tipohab()%></font></div></td>
+                  
                     <td width="40%"><div align="center"><font size="+1"><%=h.getCod_recepcionista()%></font></div></td>
                 </tr>
                 <% } %>

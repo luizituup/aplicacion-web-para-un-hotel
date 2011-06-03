@@ -5,15 +5,14 @@
 --%>
 <%@ page import= "java.util.*" %>
 <%@ page errorPage="/ErrorPages.jsp"%>
-<%@page import ="java.text.DecimalFormat"%>
-<%@page import="java.sql.*"%>
-<%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
+<%@ page import ="java.text.DecimalFormat"%>
+<%@ page import="java.sql.*"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:useBean id="model" scope="session" class="mvc.model.Model"/>
 <jsp:useBean id="cli" scope="session" class="mvc.model.Cliente"/>
 <%@page import="mvc.model.Cliente"%>
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -71,8 +70,7 @@
                     <td width="40%"><div align="center"><font size="+1"><%=c.getDireccion()%></font></div></td>
                     <td width="40%"><div align="center"><font size="+1"><%=c.getTelefono()%></font></div></td>
                     <td width="40%"><div align="center"><font size="+1"><%=c.getEmail()%></font></div></td>
-                    <td width="40%"><div align="center"><font size="+1"><%=c.getCod_recepcionista()%></font></div></td>
-                    <td width="40%"><div align="center"><font size="+1"><a href="Cliente.jsp?compra=<%=c.getCodigo()%>">Eliminar</a></font></div></td>
+                    <td width="40%"><div align="center"><font size="+1"><%=c.getCod_recepcionista()%></font></div></td>                    
                 </tr>
                 <% } %>
             </table>

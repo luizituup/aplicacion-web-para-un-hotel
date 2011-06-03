@@ -1,5 +1,4 @@
 
-
 package mvc.controller;
 
 import java.io.*;
@@ -12,7 +11,7 @@ import mvc.model.Cliente;
  *
  * @author usuario
  */
-public class ConsultarClienteAction extends Action implements Serializable {
+public class ConsultarCliente4Action extends Action implements Serializable {
 
     public void run() throws ServletException,IOException{
 
@@ -40,7 +39,7 @@ public class ConsultarClienteAction extends Action implements Serializable {
             throw new ServletException("Error al Consultar el Cliente " + ex);
         }
 
-       final String next= "/ConsultarCliente.jsp";
+       final String next= "/AgregarConsumo.jsp";
        	  RequestDispatcher rd = application.getRequestDispatcher(next);
         if(rd==null)
             throw new ServletException("No se pudo encontrar "+next);

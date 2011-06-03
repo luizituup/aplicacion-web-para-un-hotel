@@ -1,3 +1,8 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 
 
 package mvc.controller;
@@ -12,7 +17,7 @@ import mvc.model.Cliente;
  *
  * @author usuario
  */
-public class ConsultarClienteAction extends Action implements Serializable {
+public class ConsultarCliente3Action extends Action implements Serializable {
 
     public void run() throws ServletException,IOException{
 
@@ -40,11 +45,12 @@ public class ConsultarClienteAction extends Action implements Serializable {
             throw new ServletException("Error al Consultar el Cliente " + ex);
         }
 
-       final String next= "/ConsultarCliente.jsp";
+       final String next= "/RegistrarReserva.jsp";
        	  RequestDispatcher rd = application.getRequestDispatcher(next);
         if(rd==null)
             throw new ServletException("No se pudo encontrar "+next);
             rd.forward(request,response);
-        }
     }
+         }
+
 }

@@ -12,6 +12,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:useBean id="usu"scope="session" class="mvc.model.Usuario"/>
+<jsp:useBean id="u"scope="session" class="mvc.model.Usuario"/>
 <%
 String usuario= "";
 
@@ -208,8 +209,7 @@ if (sesion.getAttribute("Tipos")==null){
                                                                 <ul class="sub">
                                                                     <li><a href="<%=request.getContextPath()%>/CrearHabitacion.jsp" target="Content" title="CrearHabit">Crear</a></li>
                                                                     <li><a href="<%=request.getContextPath()%>/ListarHabitacion.jsp" target="Content" title="ListarHabit">Listar</a></li>
-                                                                    <li><a href="<%=request.getContextPath()%>/ConsultarHabitacion.jsp" target="Content" title="ConsultarHabit">Consultar</a></li>
-                                                                    <li><a href="<%=request.getContextPath()%>/AñadirDetalleHabitacion.jsp" target="Content" title="AñadirDetalleHabit">Añadir Detalle(Servicios)</a></li>
+                                                                    <li><a href="<%=request.getContextPath()%>/ConsultarHabitacion.jsp" target="Content" title="ConsultarHabit">Consultar</a></li>                                                                    
                                                                 </ul>
                                                             </li>
                                                             <li class="top">
@@ -217,8 +217,7 @@ if (sesion.getAttribute("Tipos")==null){
                                                                 <ul class="sub">
                                                                     <li><a href="<%=request.getContextPath()%>/RegistrarReserva.jsp" target="Content" title="CrearR">Crear</a></li>
                                                                     <li><a href="<%=request.getContextPath()%>/ListarReserva.jsp" target="Content" title="ListarReserva">Listar</a></li>
-                                                                    <li><a href="<%=request.getContextPath()%>/ConsultarReserva.jsp" target="Content" title="ConsultarR">Consultar</a></li>
-                                                                    <li><a href="<%=request.getContextPath()%>/ModificarReserva.jsp" target="Content" title="ModificarR">Modificar</a></li>
+                                                                    <li><a href="<%=request.getContextPath()%>/ConsultarReserva.jsp" target="Content" title="ConsultarR">Consultar</a></li>                                                                  
                                                                 </ul>
                                                             </li>
                                                             <li class="top">
@@ -226,8 +225,7 @@ if (sesion.getAttribute("Tipos")==null){
                                                                 <ul class="sub">
                                                                     <li><a href="<%=request.getContextPath()%>/AsignarhabitacionHospedaje.jsp" target="Content" title="AsignarHabitH">Asignar Habitacion</a></li>
                                                                     <li><a href="<%=request.getContextPath()%>/ListarHospedaje.jsp" target="Content" title="ListarHospedaje">Lista de Hospedaje</a></li>
-                                                                    <li><a href="<%=request.getContextPath()%>/ConsultarHospedaje.jsp" target="Content" title="ConsultarH">Consultar</a></li>
-                                                                    <li><a href="<%=request.getContextPath()%>/ModificarHospedaje.jsp" target="Content" title="ModificarH">Modificar</a></li>
+                                                                    <li><a href="<%=request.getContextPath()%>/ConsultarHospedaje.jsp" target="Content" title="ConsultarH">Consultar</a></li>                                                                   
                                                                 </ul>
                                                             </li>
                                                             <li class="top">
@@ -243,6 +241,7 @@ if (sesion.getAttribute("Tipos")==null){
                                                                 <ul class="sub">
                                                                     <li><a href="<%=request.getContextPath()%>/GenerarFactura.jsp" target="Content" title="GenerarF">Generar</a></li>
                                                                     <li><a href="<%=request.getContextPath()%>/ConsultarFactura.jsp" target="Content" title="ConsultarF">Consultar</a></li>
+                                                                    <li><a href="<%=request.getContextPath()%>/AgregarConsumo.jsp" target="Content" title="ConsultarF">Agregar Consumo</a></li>
                                                                 </ul>
                                                             </li>
                                                         </ul>
@@ -277,7 +276,7 @@ if (sesion.getAttribute("Tipos")==null){
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogServicios" class="ui-state-default ui-corner-all">Servicios</button></td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogNovedades" class="ui-state-default ui-corner-all"><a href="<%=BASEURL%>/UploadPhotos.jsp" target="Content" title="Upload"><span>Upload Photos</span></a></button></td>
+                                                                            <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><a href="<%=request.getContextPath()%>/UploadPhotos.jsp" target="Content" title="Upload"><button id="dialogNovedades" class="ui-state-default ui-corner-all"><span>Upload Photos</span></button></a></td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogContact" class="ui-state-default ui-corner-all">Contactanos</button></td>
@@ -302,18 +301,18 @@ if (sesion.getAttribute("Tipos")==null){
                                                                         <tr>
                                                                             <td align="left" valign="top" class="box_left_line">&nbsp;</td>
                                                                             <td  align="left" valign="top">
-                                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">                                                                                   
                                                                                     <tr>
-                                                                                        <td height="20" align="center" valign="middle" class="highlight" style="text-transform:uppercase; font-size:10px;" onMouseOver="this.className='mainon'" onMouseOut="this.className='mainoff'">
-                                                                                            <span class="style4">Mi Perfil: BIENVENIDO RECEPCIONISTA <br><%=usu.getUsuario()%></span>
-                                                                                        </td>                                                                                       
-                                                                                    </tr>                                                                                   
+                                                                                        <td height="20" align="center" valign="middle" class="highlight" style="text-transform:uppercase; font-size:10px;" onMouseOver="this.className='mainon'" onMouseOut="this.className='mainoff'">                                                                                            
+                                                                                            <span class="style4"><strong> BIENVENIDO RECEPCIONISTA</strong><br> <%=u.getUsuario()%></span>                                                                          
+                                                                                        </td>
+                                                                                    </tr>
                                                                                     <tr>
                                                                                         <td height="22" align="center" valign="middle" onMouseOver="this.className='mainon'" onMouseOut="this.className='mainoff'">
-                                                                                            <button id="cerrarlasesion" class="ui-state-default ui-corner-all"><a href="<%=request.getContextPath()%>/CerrarSession.jsp"><span>Cerrar Sessi&oacute;n</span></a></button>
+                                                                                            <button id="cerrarlasesion" class="ui-state-default ui-corner-all"><a href="<%=BASEURL%>/CerrarSession.jsp"><span>Cerrar Sessi&oacute;n</span></a></button>
                                                                                         </td>
                                                                                     </tr>                                                                                                                                                                     
-                                                                              </table>
+                                                                                </table>
                                                                             </td>
                                                                             <td align="left" valign="top" class="box_right_line">&nbsp;</td>
                                                                         </tr>
