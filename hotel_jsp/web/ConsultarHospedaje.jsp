@@ -12,8 +12,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:useBean id="model" scope="session" class="mvc.model.WebModel"/>
+<jsp:useBean id="hos" scope="session" class="mvc.model.Hospedaje"/>
 <%@page import="mvc.model.Hospedaje"%>
-<%@page import="mvc.model.Cliente"%>
 <%
     model.init(application);
        HttpSession sesion=request.getSession();
@@ -78,11 +78,28 @@
                 </div>
             </li>
             <li class="form-line" id="id_3">
+                <%
+                try{
+                    model.conectar();
+                    System.out.println("Conexion Ok...");
+                }catch(Exception ex){
+                    throw new Exception("Error en la Pagina: "+ex.toString());
+                }
+                %>
                 <label class="form-label-left" id="label_3" for="input_3">
                     Codigo Hospedaje:<span class="form-required">*</span>
                 </label>
                 <div id="cid_3" class="form-input">
-                    <input type="text" name="codigo" id="codigo" size="20"  />
+                    <select class="form-dropdown validate[required]" style="width:80px" id="codigo" name="codigo">
+                        <%
+                        List li = model.listarhospedaje();
+                        for(int i=0;i<li.size();i++)
+                        {
+                        Hospedaje h =(Hospedaje)li.get(i);
+                        %>
+                        <option><%=h.getCod_hospedaje()%></option>
+                        <% } %>
+                    </select>
                 </div>
             </li>
             <li>

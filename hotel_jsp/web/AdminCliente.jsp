@@ -263,7 +263,7 @@ if (sesion.getAttribute("Tipos")==null){
                                                                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                                                     <tr>
                                                                                         <td height="20" align="center" valign="middle" class="highlight" style="text-transform:uppercase; font-size:10px;" onMouseOver="this.className='mainon'" onMouseOut="this.className='mainoff'">
-                                                                                            <span class="style4">Mi Perfil: BIENVENIDO CLIENTE <br><%=usu.getUsuario2()%></span>
+                                                                                            <span class="style4"><strong>BIENVENIDO CLIENTE</strong><br><%=usu.getUsuario2() %></span>
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>

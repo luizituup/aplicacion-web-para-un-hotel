@@ -30,7 +30,7 @@ public class Habitacion implements Serializable {
         return Estado;
     }
 
-
+    
 
 
     public void setNumero_Habitacion(int Numero_Habitacion) {
@@ -81,7 +81,7 @@ public class Habitacion implements Serializable {
         this.numerocamas = numerocamas;
     }
 
-
+    
 
     public String getTipohabitacion() {
         return Tipohabitacion;

@@ -79,6 +79,20 @@
                                                 }
 					}
 				});
+
+                                // DialogServicios
+                                $('#dialogoPrecios').dialog({
+                                         autoOpen:true,
+                                         height: 400,
+                                         width: 500,
+                                         show: "explote",
+                                         hide: "clip",
+                                         buttons: {
+                                             "Ok": function() {
+							$(this).dialog("close");
+						}                                             
+					}
+				});
                                                              
 				// DialogImformacion
 				$('#dialogImformacion').button().click(function(){
@@ -92,9 +106,15 @@
 					return false;
 				});
 
-                                // DialogContact iniciarSesion
+                                // DialogContact
                                 $('#dialogContact').button().click(function(){
 					$('#dialogFormContact').dialog('open');
+					return false;
+				});
+
+                                // DialogServicios
+                                $('#dialogServicios').button().click(function(){
+                                        $('#dialogoPrecios').dialog('open');
 					return false;
 				});
 
@@ -108,10 +128,6 @@
 
                                 // DialogNovedades 
                                 $('#dialogNovedades').button().click(function(){
-				});
-
-                                // DialogServicios
-                                $('#dialogServicios').button().click(function(){
 				});                              
 
 				// Datepicker
@@ -216,7 +232,7 @@
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogQuienesSomos" class="ui-state-default ui-corner-all">Quienes Somos</button></td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogServicios" class="ui-state-default ui-corner-all">Servicios</button></td>
+                                                                            <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogServicios" class="ui-state-default ui-corner-all">Precios</button></td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogNovedades" class="ui-state-default ui-corner-all">Novedades</button></td>
@@ -417,6 +433,40 @@
                 </fieldset>
             </form>
         </div>
-        
+
+        <div id="dialogoPrecios" title="Precios">
+                <strong>TEMPORADA BAJA</strong>
+                <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Hotel Balcones</a></li>
+		<li><a href="#tabs-2">Casa de Balcones</a></li>
+            </ul>
+<div id="tabs-1">Habitación 1 persona
+$ 144.000.oo
+US $ 80 .00
+Habitación Pareja
+$ 198.500.oo
+US $ 110.00
+Habitación SUITE
+$297.000.oo
+US $ 165 .00
+</div>
+<div id="tabs-2">TEMPORADA ALTA
+Habitación 1 persona
+$ 155.000.oo
+US $ 86 .00
+Habitación Pareja
+$ 210.000.oo
+US $ 116.00
+Habitación SUITE
+$ 309.000.oo
+US $ 171.00
+Habitación Doble Del 20 de Diciembre hasta el 15 de Enero
+$ 253.000.oo
+US $ 125.00
+ESTOS PRECIOS  INCLUYEN DESAYUNO,  IMPUESTOS, SEGURO HOTELERO E INTERNET.
+            </div>
+        </div>
+        </div>
     </body>
 </html>

@@ -4,15 +4,19 @@
     Author     : hotel  balcones
 --%>
 <%@ page import= "java.util.*" %>
-<%@ page import= "mvc.model.*" %>
-<%@page import ="java.text.DecimalFormat"%>
-<%@page import="java.sql.*"%>
+<%@ page errorPage="/ErrorPages.jsp"%>
+<%@ page import ="java.text.DecimalFormat"%>
+<%@ page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:useBean id="model" scope="session" class="mvc.model.WebModel"/>
+<jsp:useBean id="clien" scope="session" class="mvc.model.Cliente"/>
+<jsp:useBean id="hab" scope="session" class="mvc.model.Habitacion"/>
+<jsp:useBean id="usua" scope="session" class="mvc.model.Usuario"/>
+<%@page import="mvc.model.Habitacion"%>
+<%@page import="mvc.model.Usuario"%>
 <%@page import="mvc.model.Cliente"%>
-<%@ page errorPage="/ErrorPages.jsp"%>
 <%
     model.init(application);
        HttpSession sesion=request.getSession();
@@ -77,11 +81,28 @@
                 </div>
             </li>
             <li class="form-line" id="id_3">
+                <%
+                try{
+                    model.conectar();
+                    System.out.println("Conexion Ok...");
+                }catch(Exception ex){
+                    throw new Exception("Error en la Pagina: "+ex.toString());
+                }
+                %>
                 <label class="form-label-left" id="label_3" for="input_3">
                     Codigo Cliente:
                 </label>
                 <div id="cid_3" class="form-input">
-                    <input type="text" class="form-textbox" id="codigo" name="codigo" size="20" />
+                    <select class="form-dropdown validate[required]" style="width:80px" id="codigo" name="codigo">
+                        <%
+                        List li1 = model.listarcliente();
+                        for(int i=0;i<li1.size();i++)
+                        {
+                        Cliente c =(Cliente)li1.get(i);
+                        %>
+                        <option><%=c.getCodigo()%></option>
+                        <% } %>
+                    </select>
                 </div>
             </li>
             <li class="form-line" id="id_2">
@@ -95,8 +116,7 @@
             </li>
             <table width="485" border="1" align="center">
                 <tr>
-                    <td><strong><font size="+1">P. Nombre</font></strong></td>
-                    <td><strong><font size="+1">S. Nombre</font></strong></td>
+                    <td><strong><font size="+1">Nombre y Apellido</font></strong></td>
                 </tr>
                     <%
                     String codigo = request.getParameter("codigo");
@@ -105,8 +125,7 @@
                         mvc.model.Cliente cli=(mvc.model.Cliente)lie.get(ie2);
                     %>
                 <tr>
-                    <td><font size="+1"><%=cli.getPnombre()%></font></td>
-                    <td><font size="+1"><%=cli.getSnombre()%></font></td>
+                    <td><font size="+1"><%=cli.getPnombre()%> <%=cli.getSnombre()%> <%=cli.getPapellido()%> <%=cli.getSapellido()%></font></td>
                 </tr>
                 <%}%>
                 <% %>
@@ -169,27 +188,78 @@
                 </div>
             </li>
             <li class="form-line" id="id_4">
+                <%
+                try{
+                    model.conectar();
+                    System.out.println("Conexion Ok...");
+                }catch(Exception ex){
+                    throw new Exception("Error en la Pagina: "+ex.toString());
+                }
+                %>
                 <label class="form-label-left" id="label_4" for="input_4">
                     Codigo Cliente:<span class="form-required">*</span>
                 </label>
                 <div id="cid_4" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="cod_cliente" name="cod_cliente" size="20" />
+                    <select class="form-dropdown validate[required]" style="width:80px" id="cod_cliente" name="cod_cliente">
+                        <%
+                        List li2 = model.listarcliente();
+                        for(int i=0;i<li2.size();i++)
+                        {
+                        Cliente ci =(Cliente)li2.get(i);
+                        %>
+                        <option><%=ci.getCodigo()%></option>
+                        <% } %>
+                    </select>
                 </div>
-            </li>     
-            <li class="form-line" id="id_11">
-                <label class="form-label-left" id="label_11" for="input_11">
-                    Numero Habitacion:<span class="form-required">*</span>
+            </li>
+            <li class="form-line" id="id_4">
+                <%
+                try{
+                    model.conectar();
+                    System.out.println("Conexion Ok...");
+                }catch(Exception ex){
+                    throw new Exception("Error en la Pagina: "+ex.toString());
+                }
+                %>
+                <label class="form-label-left" id="label_4" for="input_4">
+                    Numero De Habitacion:<span class="form-required">*</span>
                 </label>
-                <div id="cid_11" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="cod_habitacion" name="cod_habitacion" size="20" />
+                <div id="cid_2" class="form-input">
+                    <select class="form-dropdown validate[required]" style="width:80px" id="cod_habitacion" name="cod_habitacion">
+                        <%
+                        List li = model.listarhabitacion();
+                        for(int i=0;i<li.size();i++)
+                        {
+                        Habitacion h =(Habitacion)li.get(i);
+                        %>
+                        <option><%=h.getNumero_Habitacion()%></option>
+                        <% } %>
+                    </select>
                 </div>
             </li>
             <li class="form-line" id="id_9">
+                <%
+                try{
+                    model.conectar();
+                    System.out.println("Conexion Ok...");
+                }catch(Exception ex){
+                    throw new Exception("Error en la Pagina: "+ex.toString());
+                }
+                %>
                 <label class="form-label-left" id="label_9" for="input_9">
                     Codigo Recepcion:<span class="form-required">*</span>
                 </label>
                 <div id="cid_9" class="form-input">
-                    <input type="text" class="form-textbox validate[required, Numeric]" id="cod_recepcionista" name="cod_recepcionista" size="20" />
+                     <select class="form-dropdown validate[required]" style="width:80px" id="cod_recepcionista" name="cod_recepcionista">
+                        <%
+                        List li3 = model.listarusuario();
+                        for(int i=0;i<li3.size();i++)
+                        {
+                        Usuario u =(Usuario)li3.get(i);
+                        %>
+                        <option><%=u.getClave()%></option>
+                        <% } %>
+                    </select>
                 </div>
             </li>
             

@@ -1,18 +1,17 @@
 
-
 package mvc.controller;
 
 import java.io.*;
 import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.*;
-import mvc.model.Cliente;
+import mvc.model.Consumo;
 
 /**
  *
  * @author usuario
  */
-public class ConsultarClienteAction extends Action implements Serializable {
+public class ConsultarConsumoAction extends Action implements Serializable {
 
     public void run() throws ServletException,IOException{
 
@@ -21,17 +20,16 @@ public class ConsultarClienteAction extends Action implements Serializable {
              System.out.print("nada");
 
          }else{
-            Cliente c = new Cliente();
+            Consumo c = new Consumo();
          c.setCodigo(Integer.parseInt(Codigo));
          System.out.println(c.getCodigo());
 
         try {
-            List li= model.consultarcliente(Codigo);
+            List li= model.consultarconsumo(Codigo);
             for (int i=0;i<li.size();i++){
-                c = (Cliente)li.get(i);
+                c = (Consumo)li.get(i);
                 System.out.println(c.getCodigo());
-                System.out.println(c.getPnombre());
-                System.out.println(c.getPapellido());
+
             }
 
         } catch (SQLException exe) {
@@ -40,12 +38,11 @@ public class ConsultarClienteAction extends Action implements Serializable {
             throw new ServletException("Error al Consultar el Cliente " + ex);
         }
 
-       final String next= "/ConsultarCliente.jsp";
+       final String next= "/GenerarFactura.jsp";
        	  RequestDispatcher rd = application.getRequestDispatcher(next);
         if(rd==null)
             throw new ServletException("No se pudo encontrar "+next);
             rd.forward(request,response);
+        }
     }
-         }
-         
 }

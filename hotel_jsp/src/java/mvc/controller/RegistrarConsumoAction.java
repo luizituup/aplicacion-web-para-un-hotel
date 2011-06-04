@@ -14,9 +14,9 @@ import mvc.model.Consumo;
 
 /**
  *
- * @author Luis
+ * @author eduardo
  */
-public class ResgistrarConsumoAction extends Action implements Serializable {
+public class RegistrarConsumoAction extends Action implements Serializable {
 
      String next="";
      HttpSession session =null;//request.getSession(true);

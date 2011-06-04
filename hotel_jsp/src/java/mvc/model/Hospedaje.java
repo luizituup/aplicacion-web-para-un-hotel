@@ -25,7 +25,7 @@ public class Hospedaje implements Serializable {
     private int cod_recepcionista;
     private int valor;
     private int cod_cliente;
-
+ 
     private String acompañante;
 
  public Hospedaje (){
@@ -144,6 +144,8 @@ public class Hospedaje implements Serializable {
 
 		return h;
 	}
+
+
 }
 
 
