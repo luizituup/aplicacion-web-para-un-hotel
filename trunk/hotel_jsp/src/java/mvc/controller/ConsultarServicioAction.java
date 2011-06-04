@@ -1,5 +1,7 @@
 
-package mvc.controller;
+
+
+   package mvc.controller;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -48,6 +50,7 @@ public class ConsultarServicioAction extends Action implements Serializable {
                 if(rd==null)
                     throw new ServletException("No se pudo encontrar "+next);
                     rd.forward(request,response);
-        }
     }
+       }
+
 }

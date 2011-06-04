@@ -1,18 +1,29 @@
 <%-- 
     Document   : AgregarConsumo
     Created on : 2/06/2011, 05:59:34 PM
-    Author     : Luis
+    Author     : EDUARDO
 --%>
 <%@ page import= "java.util.*" %>
 <%@ page errorPage="/ErrorPages.jsp"%>
+<%@ page import= "java.util.*" %>
+<%@ page import= "mvc.model.*" %>
 <%@page import ="java.text.DecimalFormat"%>
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" language="java"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-<jsp:useBean id="model" scope="session" class="mvc.model.Model"/>
-<jsp:useBean id="servi" scope="session" class="mvc.model.Servicios"/>
-<%@page import="mvc.model.Servicios"%>
+<jsp:useBean id="model" scope="session" class="mvc.model.WebModel"/>
+<jsp:useBean id="servi" scope="session" class="mvc.model.Consumo"/>
+<%@page import="mvc.model.Consumo"%>
+<%@page import="mvc.model.Cliente"%>
+<%
+    model.init(application);
+       HttpSession sesion=request.getSession();
+    request= (HttpServletRequest)pageContext.getRequest();
+    String BASEURL= request.getContextPath();
+    String CONTROLLER=BASEURL + "/controller";
+
+ %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -57,7 +68,7 @@
 </script>
     </head>
     <body>
-        <form class="jotform-form" action="" method="post" name="form_11225927262" id="11225927262" accept-charset="utf-8">
+        <form class="jotform-form" action="<%=CONTROLLER%>/Consultar/Cliente4" method="post" name="form_11225927262" id="11225927262" accept-charset="utf-8">
     <input type="hidden" name="formID" value="11225927262" />
     <div class="form-all">
         <ul class="form-section">
@@ -85,16 +96,25 @@
                     </div>
                 </div>
             </li>
-            <table width="485" border="1" align="center">
+           <table width="485" border="1" align="center">
                 <tr>
                     <td><strong><font size="+1">P. Nombre</font></strong></td>
                     <td><strong><font size="+1">S. Nombre</font></strong></td>
                 </tr>
+                    <%
+                    String codigo = request.getParameter("codigo");
+                    List lie = model.consultarcliente(codigo);
+                        for(int ie2=0;ie2<lie.size();ie2++) {
+                        mvc.model.Cliente cli=(mvc.model.Cliente)lie.get(ie2);
+                    %>
                 <tr>
-                    <td><font size="+1"></font></td>
-                    <td><font size="+1"></font></td>
+                    <td><font size="+1"><%=cli.getPnombre()%></font></td>
+                    <td><font size="+1"><%=cli.getSnombre()%></font></td>
                 </tr>
+                <%}%>
+                <% %>
             </table>
+
             <li style="display:none">
                 Should be Empty:
                 <input type="text" name="website" value="" />
@@ -146,7 +166,7 @@
             </table>
             </div>
        </div>
-        <form class="jotform-form" action="http://www.jotform.com/submit.php" method="post" name="form_11525314412" id="11525314412" accept-charset="utf-8">
+        <form class="jotform-form" action="<%=CONTROLLER%>/Registrar/Consumo" method="post" name="form_11525314412" id="11525314412" accept-charset="utf-8">
     <input type="hidden" name="formID" value="11525314412" />
     <div class="form-all">
         <ul class="form-section">
@@ -160,40 +180,43 @@
             <li class="form-line" id="id_3">
                 <label class="form-label-left" id="label_3" for="input_3"> Codigo: </label>
                 <div id="cid_3" class="form-input">
-                    <input type="text" class="form-textbox" id="input_3" name="q3_codigo" size="20" />
+                    <input type="text" class="form-textbox" id="codigo" name="codigo" size="20" />
                 </div>
             </li>
             <li class="form-line" id="id_4">
 
                 <label class="form-label-left" id="label_4" for="input_4"> Codigo Cliente: </label>
                 <div id="cid_4" class="form-input">
-                    <input type="text" class="form-textbox" id="input_4" name="q4_codigoCliente" size="20" />
+                    <input type="text" class="form-textbox" id="cod_cliente" name="cod_cliente" size="20" />
                 </div>
             </li>
             <li class="form-line" id="id_5">
                 <label class="form-label-left" id="label_5" for="input_5"> Servicio Consumido: </label>
 
                 <div id="cid_5" class="form-input">
-                    <input type="text" class="form-textbox" id="input_5" name="q5_servicioConsumido" size="20" />
+                    <input type="text" class="form-textbox" id="servicios" name="servicios" size="20" />
                 </div>
             </li>
             <li class="form-line" id="id_6">
                 <label class="form-label-left" id="label_6" for="input_6"> Cantidad: </label>
                 <div id="cid_6" class="form-input">
-                    <input type="text" class="form-textbox" id="input_6" name="q6_cantidad" size="20" />
+                    <input type="text" class="form-textbox" id="cantidad" name="cantidad" size="20" />
 
                 </div>
             </li>
-            <li class="form-line" id="id_7">
-                <label class="form-label-left" id="label_7" for="input_7"> Fecha: </label>
-                <div id="cid_7" class="form-input"><span class="form-sub-label-container"><input class="form-textbox" id="month_7" name="q7_fecha[month]" type="text" size="2" maxlength="2" value="06" />
-                        -
-                        <label class="form-sub-label" for="month_7" id="sublabel_month"> Mes </label></span><span class="form-sub-label-container"><input class="form-textbox" id="day_7" name="q7_fecha[day]" type="text" size="2" maxlength="2" value="02" />
+             <li class="form-line" id="id_7">
 
+                <label class="form-label-left" id="label_7" for="input_7">
+                    Fecha :<span class="form-required">*</span>
+                </label>
+                <div id="cid_7" class="form-input"><span class="form-sub-label-container"><input class="form-textbox validate[required]" id="fechaday" name="fechaday" type="text" size="2" maxlength="2" value="31" />
                         -
-                        <label class="form-sub-label" for="day_7" id="sublabel_day"> Día </label></span><span class="form-sub-label-container"><input class="form-textbox" id="year_7" name="q7_fecha[year]" type="text" size="4" maxlength="4" value="2011" />
-                        <label class="form-sub-label" for="year_7" id="sublabel_year"> Año </label></span><span class="form-sub-label-container"><img alt="Elija una fecha" id="input_7_pick" src="http://www.jotform.com/images/calendar.png" align="absmiddle" />
-                        <label class="form-sub-label" for="input_7_pick"> &nbsp;&nbsp;&nbsp; </label></span>
+                        <label class="form-sub-label" for="day_6" id="sublabel_day"> Día </label></span><span class="form-sub-label-container"><input class="form-textbox validate[required]" id="fechamonth" name="fechamonth" type="text" size="2" maxlength="2" value="05" />
+                        -
+                        <label class="form-sub-label" for="month_6" id="sublabel_month"> Mes </label></span><span class="form-sub-label-container"><input class="form-textbox validate[required]" id="fechayear" name="fechayear" type="text" size="4" maxlength="4" value="2011" />
+
+                        <label class="form-sub-label" for="year_6" id="sublabel_year"> Año </label></span><span class="form-sub-label-container"><img alt="Elija una fecha" id="input_6_pick" src="http://www.jotform.com/images/calendar.png" align="absmiddle" />
+                        <label class="form-sub-label" for="input_6_pick"> &nbsp;&nbsp;&nbsp; </label></span>
                 </div>
             </li>
 

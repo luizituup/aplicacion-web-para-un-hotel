@@ -14,7 +14,7 @@ import java.sql.SQLException;
  * @author hotel balcones
  */
 public class Cliente implements Serializable {
-
+    
     private int codigo;
     private String Pnombre;
     private String Snombre;
@@ -107,13 +107,16 @@ public class Cliente implements Serializable {
         this.telefono = telefono;
     }
 
+
     public void setEmail(String email) {
         this.email = email;
     }
 
+
     public String getEmail() {
         return email;
     }
+
 
     public static Cliente load(ResultSet rs)throws SQLException{
 
@@ -132,4 +135,5 @@ public class Cliente implements Serializable {
 
 		return c;
 	}
+
 }

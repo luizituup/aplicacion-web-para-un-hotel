@@ -17,7 +17,7 @@ public class Servicios implements Serializable {
     private int cantidad;
 
     public Servicios (){
-
+     
     }
 
 
@@ -66,7 +66,7 @@ public class Servicios implements Serializable {
                 s.setCantidad(rs.getInt(2));
                 s.setNombre(rs.getString(3));
                 s.setCosto(rs.getInt(4));
-
+                
 		return s;
 	}
 }

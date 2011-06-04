@@ -5,6 +5,9 @@
 
 package mvc.model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Luis
@@ -74,6 +77,21 @@ public class Consumo {
         this.servicios = servicios;
     }
 
+ public static Consumo load(ResultSet rs)throws SQLException{
 
+		Consumo s=new Consumo ();
+                s.setCodigo(rs.getInt(1));
+                s.setCod_cliente(rs.getInt(2));
+                s.setServicios(rs.getInt(3));
+                s.setCantidad(rs.getInt(4));
+                s.setFechaday(rs.getInt(5));
+                s.setFechamonth(rs.getInt(6));
+                s.setFechayear(rs.getInt(7));
+
+
+
+
+		return s;
+	}
 
 }

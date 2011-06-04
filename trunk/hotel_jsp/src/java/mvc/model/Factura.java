@@ -16,26 +16,76 @@ public class Factura implements Serializable {
 
     private int cod_cliente;
     private int cod_factura;
-    private String fecha;
-    private int  cod_detalleservicio ;
+    private int fechaday;
+    private int fechamonth;
+    private int fechayear;
+    private int  cod_consumo ;
     private int cod_recepcionista;
-    private double descuento;
-    private double total;
-    private double iva;
+    private int descuento;
+    private int total;
+    private int cod_hospedaje;
+    private String estado;
+    
 
     public Factura (){
 
     }
 
-    public double getIva() {
-        return iva;
+    public void setTotal(int total) {
+        this.total = total;
     }
 
-
-    public void setIva(double iva) {
-        this.iva = iva;
+    public void setFechayear(int fechayear) {
+        this.fechayear = fechayear;
     }
 
+    public void setFechamonth(int fechamonth) {
+        this.fechamonth = fechamonth;
+    }
+
+    public void setFechaday(int fechaday) {
+        this.fechaday = fechaday;
+    }
+
+    public void setDescuento(int descuento) {
+        this.descuento = descuento;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public int getFechayear() {
+        return fechayear;
+    }
+
+    public int getFechamonth() {
+        return fechamonth;
+    }
+
+    public int getFechaday() {
+        return fechaday;
+    }
+
+    public int getDescuento() {
+        return descuento;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public void setCod_hospedaje(int cod_hospedaje) {
+        this.cod_hospedaje = cod_hospedaje;
+    }
+
+    public int getCod_hospedaje() {
+        return cod_hospedaje;
+    }
 
     public void setCod_recepcionista(int cod_recepcionista) {
         this.cod_recepcionista = cod_recepcionista;
@@ -46,49 +96,14 @@ public class Factura implements Serializable {
         return cod_recepcionista;
     }
 
-   
-
-
-
     public void setCod_factura(int cod_factura) {
         this.cod_factura = cod_factura;
     }
-
 
     public int getCod_factura() {
         return cod_factura;
     }
 
-
-  
-
-    public double getDescuento() {
-        return descuento;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setDescuento(double descuento) {
-        this.descuento = descuento;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    /**
-     * @return the codcliente
-     */
     public int getCod_cliente() {
         return cod_cliente;
     }
@@ -100,20 +115,11 @@ public class Factura implements Serializable {
         this.cod_cliente = codcliente;
     }
 
-    /**
-     * @return the cod_detalleservicio
-     */
-    public int getCod_detalleservicio() {
-        return cod_detalleservicio;
+    public void setCod_consumo(int cod_consumo) {
+        this.cod_consumo = cod_consumo;
     }
 
-    /**
-     * @param cod_detalleservicio the cod_detalleservicio to set
-     */
-    public void setCod_detalleservicio(int cod_detalleservicio) {
-        this.cod_detalleservicio = cod_detalleservicio;
-    }
-
-
-
-    }
+    public int getCod_consumo() {
+        return cod_consumo;
+    }   
+}

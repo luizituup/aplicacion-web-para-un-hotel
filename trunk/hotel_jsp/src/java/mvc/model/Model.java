@@ -355,6 +355,34 @@ public class Model implements Serializable{
 		return tipo;
     }
 
+    public List listarusuario() throws SQLException, Exception {
+        if (!isConnect())
+		throw new SQLException("no hay conexcion");
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Usuario u = null;
+        List lista = new LinkedList();
+        try {
+            ps =(PreparedStatement) con.prepareStatement("select * from usuario");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                u = mvc.model.Usuario.loadUsuario(rs);
+                lista.add(u);
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+        }
+        return lista;
+    }
+
     public void registrarservicios (Servicios s)throws SQLException{
                 if(existeservicio(s))
                     throw new SQLException("Este Servicio ya Existe");
@@ -817,7 +845,7 @@ public class Model implements Serializable{
 
 		try{
 
-                        pstmt=con.prepareStatement("INSERT INTO consumo VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+                        pstmt=con.prepareStatement("INSERT INTO consumo VALUES (?,?,?,?,?,?,?)");
                         pstmt.setInt(1, co.getCodigo());
                         pstmt.setInt(2,co.getCod_cliente());
                         pstmt.setInt(3,co.getServicios());
@@ -834,6 +862,33 @@ public class Model implements Serializable{
 			}
 		}
     }
+    public List consultarconsumo(String codigo) throws SQLException{
+
+		PreparedStatement ps = null;
+                ResultSet rs = null;
+                Consumo h = null;
+                List lista = new LinkedList();
+
+		try{
+			ps=con.prepareStatement("SELECT * FROM consumo WHERE codigo=?");
+			ps.setString(1, codigo);
+			rs=ps.executeQuery();
+
+                        while (rs.next()) {
+                            h = mvc.model.Consumo.load(rs);
+                            lista.add(h);
+            }
+		}finally{
+			if(rs!=null)
+				rs.close();
+
+			if(ps!=null)
+				ps.close();
+		}
+
+		return lista;
+    }
+
 
    public boolean existeconsumo(Consumo co) throws SQLException{
                 if (!isConnect())
@@ -845,6 +900,88 @@ public class Model implements Serializable{
 		try{
 			pstmt=con.prepareStatement("SELECT COUNT(*) FROM consumo WHERE codigo=?");
 			pstmt.setInt(1, co.getCodigo());
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				if(rs.getString(1).equals("0"))
+					sw=false;
+		}finally{
+			if(rs!=null)
+				rs.close();
+
+			if(pstmt!=null)
+				pstmt.close();
+		}
+
+		return sw;
+    }
+
+   public List listarconsumo() throws SQLException, Exception {
+        if (!isConnect())
+		throw new SQLException("no hay conexcion");
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Consumo co = null;
+        List lista = new LinkedList();
+        try {
+            ps =(PreparedStatement) con.prepareStatement("select * from consumo");
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                co = mvc.model.Consumo.load(rs);
+                lista.add(co);
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+        }
+        return lista;
+    }
+
+   public void generarfactura (Factura f)throws SQLException{
+                if(existefactura(f))
+                    throw new SQLException("Esta factura ya existe");
+		PreparedStatement pstmt=null;
+
+		try{
+
+                        pstmt=con.prepareStatement("INSERT INTO factura VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+                        pstmt.setInt(1, f.getCod_factura());
+                        pstmt.setInt(2, f.getCod_recepcionista());
+                        pstmt.setInt(3, f.getCod_cliente());
+                        pstmt.setInt(4, f.getCod_consumo());
+                        pstmt.setInt(5, f.getCod_hospedaje());
+                        pstmt.setInt(6, f.getFechaday());
+                        pstmt.setInt(7, f.getFechamonth());
+                        pstmt.setInt(8, f.getFechayear());
+                        pstmt.setInt(9, f.getDescuento());
+                        pstmt.setInt(10, f.getTotal());
+                        pstmt.setString(11, f.getEstado());
+
+			pstmt.executeUpdate();
+		}finally{
+			if(pstmt!=null){
+				pstmt.close();
+				pstmt=null;
+			}
+		}
+    }
+
+   public boolean existefactura(Factura f) throws SQLException{
+                if (!isConnect())
+			throw new SQLException("no hay conexcion");
+		boolean sw=true;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+
+		try{
+			pstmt=con.prepareStatement("SELECT COUNT(*) FROM factura WHERE codigo=?");
+			pstmt.setInt(1, f.getCod_factura());
 			rs=pstmt.executeQuery();
 			if(rs.next())
 				if(rs.getString(1).equals("0"))

@@ -37,7 +37,7 @@ public class CrearHabitacionAction extends Action implements Serializable {
         String numeroc=request.getParameter("numerocamas");
         String aire=request.getParameter("aire");
         String detalles=request.getParameter("detalles");
-
+        
         String cod_recep=request.getParameter("cod_recepcionista");
 
 
@@ -54,7 +54,7 @@ public class CrearHabitacionAction extends Action implements Serializable {
         h.setNumerocamas(Integer.parseInt(numeroc));
         h.setAire(aire);
         h.setDetalles(detalles);
-
+       
         h.setCod_recepcionista(Integer.parseInt(cod_recep));
 
 
@@ -70,6 +70,8 @@ public class CrearHabitacionAction extends Action implements Serializable {
         if(rd==null)
           	throw new ServletException("No se pudo encontrar "+next);
         rd.forward(request,response);
+
+
         }
 }
 
