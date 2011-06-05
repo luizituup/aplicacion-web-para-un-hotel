@@ -32,6 +32,9 @@
 				// Accordion
 				$("#accordion").accordion({ header: "h3" });
 
+                                // AccordionPrecio
+				$("#accordion1").accordion({ header: "h2" });
+
 				// Tabs
 				$('#tabs').tabs();
 
@@ -80,17 +83,16 @@
 					}
 				});
 
-                                // DialogServicios
-                                $('#dialogoPrecios').dialog({
-                                         autoOpen:true,
-                                         height: 400,
-                                         width: 500,
-                                         show: "explote",
-                                         hide: "clip",
-                                         buttons: {
-                                             "Ok": function() {
+                               // DialogPrecios
+				$('#dialogPrecios').dialog({
+					autoOpen: false,
+					width: 600,
+                                        show: "explode",
+                                        hide: "puff",
+					buttons: {
+						"Ok": function() {
 							$(this).dialog("close");
-						}                                             
+						}
 					}
 				});
                                                              
@@ -114,7 +116,7 @@
 
                                 // DialogServicios
                                 $('#dialogServicios').button().click(function(){
-                                        $('#dialogoPrecios').dialog('open');
+                                        $('#dialogPrecios').dialog('open');
 					return false;
 				});
 
@@ -431,39 +433,27 @@
             </form>
         </div>
 
-        <div id="dialogoPrecios" title="Precios">
-                <strong>TEMPORADA BAJA</strong>
-                <div id="tabs">
-            <ul>
-                <li><a href="#tabs-1">Hotel Balcones</a></li>
-		<li><a href="#tabs-2">Casa de Balcones</a></li>
-            </ul>
-<div id="tabs-1">Habitación 1 persona
-$ 144.000.oo
-US $ 80 .00
-Habitación Pareja
-$ 198.500.oo
-US $ 110.00
-Habitación SUITE
-$297.000.oo
-US $ 165 .00
-</div>
-<div id="tabs-2">TEMPORADA ALTA
-Habitación 1 persona
-$ 155.000.oo
-US $ 86 .00
-Habitación Pareja
-$ 210.000.oo
-US $ 116.00
-Habitación SUITE
-$ 309.000.oo
-US $ 171.00
-Habitación Doble Del 20 de Diciembre hasta el 15 de Enero
-$ 253.000.oo
-US $ 125.00
-ESTOS PRECIOS  INCLUYEN DESAYUNO,  IMPUESTOS, SEGURO HOTELERO E INTERNET.
-            </div>
-        </div>
+        <div id="dialogPrecios" title="Dialogo de Tarifas">
+            <div id="accordion1">
+			<div>
+                            <h2><a href="#">TEMPORADA BAJA</a></h2>
+                            <div>Hotel Los Balcones De Badillo<br>
+                                Habitación 1 Persona: $ 144.000.oo - US $ 80 .00<br>
+                                Habitación Pareja: $ 198.500.oo - US $ 110.00<br>
+                                Habitación SUITE: $297.000.oo - US $ 165 .00<br>
+                            </div>
+			</div>
+			<div>
+                            <h2><a href="#">TEMPORADA ALTA</a></h2>
+				<div>Hotel Los Balcones De Badillo<br>
+                                    Habitación 1 Persona: $ 155.000.oo - US $ 86 .00
+                                    Habitación Pareja: $ 210.000.oo - US $ 116.00
+                                    Habitación SUITE: $ 309.000.oo - US $ 171.00
+                                    Habitación Doble Del 20 de Diciembre hasta el 15 de Enero: $ 253.000.oo - US $ 125.00
+                                    ESTOS PRECIOS  INCLUYEN DESAYUNO,  IMPUESTOS, SEGURO HOTELERO E INTERNET.
+                                </div>
+			</div>
+		</div>
         </div>
     </body>
 </html>
