@@ -235,9 +235,6 @@
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogServicios" class="ui-state-default ui-corner-all">Precios</button></td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogNovedades" class="ui-state-default ui-corner-all">Novedades</button></td>
-                                                                        </tr>
-                                                                        <tr>
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogContact" class="ui-state-default ui-corner-all">Contactanos</button></td>
                                                                         </tr>                                                                        
                                                                         <tr>

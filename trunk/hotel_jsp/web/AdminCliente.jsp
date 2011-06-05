@@ -41,6 +41,9 @@ if (sesion.getAttribute("Tipos")==null){
 				// Accordion
 				$("#accordion").accordion({ header: "h3" });
 
+                                // AccordionPrecio
+				$("#accordion1").accordion({ header: "h2" });
+
 				// Tabs
 				$('#tabs').tabs();
 
@@ -60,6 +63,19 @@ if (sesion.getAttribute("Tipos")==null){
 
                                 // DialogQuienesSomos
 				$('#dialog2').dialog({
+					autoOpen: false,
+					width: 600,
+                                        show: "explode",
+                                        hide: "puff",
+					buttons: {
+						"Ok": function() {
+							$(this).dialog("close");
+						}
+					}
+				});
+
+                                // DialogPrecios
+				$('#dialogPrecios').dialog({
 					autoOpen: false,
 					width: 600,
                                         show: "explode",
@@ -107,17 +123,19 @@ if (sesion.getAttribute("Tipos")==null){
 					return false;
 				});
 
+                                // DialogServicios
+                                $('#dialogServicios').button().click(function(){
+                                        $('#dialogPrecios').dialog('open');
+					return false;
+				});
+
                                 // DialogFotos 
                                 $('#dialogFotos').button().click(function(){
 				});
 
                                 // DialogNovedades 
                                 $('#dialogNovedades').button().click(function(){
-				});
-
-                                // DialogServicios
-                                $('#dialogServicios').button().click(function(){
-				});
+				});                               
 
                                 // CerrarLaSesion
                                 $('#cerrarlasesion').button().click(function(){
@@ -232,11 +250,8 @@ if (sesion.getAttribute("Tipos")==null){
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogQuienesSomos" class="ui-state-default ui-corner-all">Quienes Somos</button></td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogServicios" class="ui-state-default ui-corner-all">Servicios</button></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogNovedades" class="ui-state-default ui-corner-all">Novedades</button></td>
-                                                                        </tr>
+                                                                            <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogServicios" class="ui-state-default ui-corner-all">Precios</button></td>
+                                                                        </tr>                                                                      
                                                                         <tr>
                                                                             <td class="mainoff" onmouseover="this.className='mainon'" onmouseout="this.className='mainoff'" align="center" valign="middle"><button id="dialogContact" class="ui-state-default ui-corner-all">Contactanos</button></td>
                                                                         </tr>                                                                        
@@ -417,6 +432,28 @@ if (sesion.getAttribute("Tipos")==null){
                 </fieldset>
             </form>
         </div>
-        
+
+        <div id="dialogPrecios" title="Dialogo de Tarifas">
+            <div id="accordion1">
+			<div>
+                            <h2><a href="#">TEMPORADA BAJA</a></h2>
+                            <div>Hotel Los Balcones De Badillo<br>
+                                Habitación 1 Persona: $ 144.000.oo - US $ 80 .00<br>
+                                Habitación Pareja: $ 198.500.oo - US $ 110.00<br>
+                                Habitación SUITE: $297.000.oo - US $ 165 .00<br>
+                            </div>
+			</div>
+			<div>
+                            <h2><a href="#">TEMPORADA ALTA</a></h2>
+				<div>Hotel Los Balcones De Badillo<br>
+                                    Habitación 1 Persona: $ 155.000.oo - US $ 86 .00
+                                    Habitación Pareja: $ 210.000.oo - US $ 116.00
+                                    Habitación SUITE: $ 309.000.oo - US $ 171.00
+                                    Habitación Doble Del 20 de Diciembre hasta el 15 de Enero: $ 253.000.oo - US $ 125.00
+                                    ESTOS PRECIOS  INCLUYEN DESAYUNO,  IMPUESTOS, SEGURO HOTELERO E INTERNET.
+                                </div>
+			</div>
+		</div>
+        </div>
     </body>
 </html>
